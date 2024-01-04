@@ -1,5 +1,5 @@
-class LocationSearchService
-  def find_location(business)
+class BusinessService
+  def find_business(business)
     conn = Faraday.new("https://api.tomtom.com/search/2/nearbySearch/.json") do |faraday|
       faraday.params["key"] = ENV["TOM_TOM_API_KEY"]
       faraday.params["lat"] = business.lat
@@ -10,5 +10,3 @@ class LocationSearchService
     JSON.parse(response.body, symbolize_names: :true)
   end
 end
-
-#name, {results: [{...poi: {name}}]}
