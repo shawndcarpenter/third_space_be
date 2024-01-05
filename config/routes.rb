@@ -3,4 +3,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  namespace :api do
+    namespace :v0 do
+      get '/nearest_spaces', to: 'spaces#nearest_spaces'
+    end
+  end
 end
