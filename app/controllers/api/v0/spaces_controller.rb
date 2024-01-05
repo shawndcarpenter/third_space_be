@@ -27,7 +27,6 @@ class Api::V0::SpacesController < ApplicationController
 
     response = conn.get("#{id}")
     data = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
 
     third_space = data.map do |details|
       ThirdSpace.new(details)
@@ -36,9 +35,6 @@ class Api::V0::SpacesController < ApplicationController
   end
 
   private
-  # def params
-  #   params.permit(:id)
-  # end
 
   def search_params
     params.permit(:name, :city)
