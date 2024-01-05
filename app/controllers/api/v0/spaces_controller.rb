@@ -44,6 +44,7 @@ class Api::V0::SpacesController < ApplicationController
                                 tags: []
                                 )
 
+    render json: ThirdSpaceSerializer.new(third_space).serializable_hash
   end
 
   private

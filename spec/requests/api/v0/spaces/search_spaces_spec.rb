@@ -29,7 +29,7 @@ RSpec.describe "Search for Spaces to Create", type: :request do
       expect(result).to have_key(:name)
       expect(result[:name]).to eq("Five Watt Coffee")
       expect(result).to have_key(:address)
-      expect(result[:address]).to eq("3745 Nicollet Ave S, Minneapolis, MN, 55409")
+      expect(result[:address]).to eq("3745 Nicollet Ave S, Minneapolis, MN 55409")
       expect(result).to have_key(:category)
       expect(result[:category]).to eq("Coffee & Tea")
     end
