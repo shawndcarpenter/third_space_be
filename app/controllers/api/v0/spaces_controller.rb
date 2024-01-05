@@ -18,7 +18,9 @@ class Api::V0::SpacesController < ApplicationController
     render json: SearchResultSerializer.new(search_results).serializable_hash
   end
 
-  def create_third_space(id)
+  def create_third_space
+    id = params[:id]
+
     conn = Faraday.new(url: "https://api.yelp.com/v3/businesses/") do |faraday|
       faraday.headers["Authorization"] = Rails.application.credentials.yelp[:key]
     end
@@ -34,6 +36,9 @@ class Api::V0::SpacesController < ApplicationController
   end
 
   private
+  # def params
+  #   params.permit(:id)
+  # end
 
   def search_params
     params.permit(:name, :city)

@@ -2,17 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Search for Spaces to Create", type: :request do
   before :each do
-    json_response = File.read('spec/fixtures/five_watt_search.json')
-
-    stub_request(:get, "https://api.yelp.com/v3/businesses/search?location=Minneapolis&term=Five%20Watt").
-    with(
-      headers: {
-     'Accept'=>'*/*',
-     'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-     'Authorization'=>"#{Rails.application.credentials.yelp[:key]}",
-     'User-Agent'=>'Faraday v2.8.1'
-      }).
-    to_return(status: 200, body: json_response, headers: {})
+    space_search_data
   end
 
   describe 'Find a Business' do
@@ -25,19 +15,19 @@ RSpec.describe "Search for Spaces to Create", type: :request do
 
       expect(response).to be_successful
       
-      response_body = JSON.parse(response.body, symbolize_names: true)
+      # response_body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(200)
-      expect(response_body).to be_a Hash
+      expect(@response_body).to be_a Hash
       
-      data = response_body[:data]
+      # data = @response_body[:data]
 
-      expect(data.length).to eq(14)
+      expect(@data.length).to eq(14)
 
-      result = data.first
+      result = @data.first
       expect(result).to have_key(:id)
 
-      result = data.first[:attributes]
+      result = result[:attributes]
       expect(result[:id]).to eq("5pWHnKN3_AIrXiyyqZ74pw")
 
       expect(result).to have_key(:name)
