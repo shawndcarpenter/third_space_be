@@ -4,7 +4,7 @@ class SearchResult
   def initialize(data)
     @id = data[:id]
     @name = data[:name]
-    @address = data[:location][:address1] + ", " + data[:location][:city] + ", " + data[:location][:state] + ", " + data[:location][:zip_code]
+    @address = data[:location][:display_address].join(", ")
     @category = data[:categories].first[:title]
   end
 end

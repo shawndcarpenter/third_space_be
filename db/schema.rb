@@ -10,13 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_05_033117) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_05_070833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "search_params", force: :cascade do |t|
     t.string "name"
     t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "third_spaces", force: :cascade do |t|
+    t.string "yelp_id"
+    t.string "name"
+    t.string "address"
+    t.float "rating"
+    t.string "phone"
+    t.string "photos", default: [], array: true
+    t.float "lat"
+    t.float "lon"
+    t.string "price"
+    t.jsonb "hours"
+    t.boolean "open_now"
+    t.string "category"
+    t.string "tags", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

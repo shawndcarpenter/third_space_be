@@ -4,6 +4,29 @@
 # this file to always be loaded, without a need to explicitly require it in any
 # files.
 #
+def space_search_data
+  json_response = File.read('spec/fixtures/five_watt_search.json')
+
+  stub_request(:get, "https://api.yelp.com/v3/businesses/search?location=Minneapolis&term=Five%20Watt").
+  with(
+    headers: {
+   'Accept'=>'*/*',
+   'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+   'Authorization'=>"#{Rails.application.credentials.yelp[:key]}",
+   'User-Agent'=>'Faraday v2.8.1'
+    }).
+  to_return(status: 200, body: json_response, headers: {})
+
+  search_params = create(:search_params, 
+                        name: "Five Watt", 
+                        city: "Minneapolis")
+
+  get search_spaces_api_v0_spaces_path, params: { name: search_params.name, city: search_params.city }
+
+  @response_body = JSON.parse(response.body, symbolize_names: true)
+  @data = @response_body[:data]
+  @result = @data.first
+end
 # Given that it is always loaded, you are encouraged to keep this file as
 # light-weight as possible. Requiring heavyweight dependencies from this file
 # will add to the boot time of your test suite on EVERY test run, even for an
