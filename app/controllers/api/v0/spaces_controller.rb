@@ -1,8 +1,8 @@
 class Api::V0::SpacesController < ApplicationController
 
   def search_spaces
-    name = "Five Watt"
-    city = "Minneapolis"
+    name = search_params[:name]
+    city = search_params[:city]
 
     conn = Faraday.new(url: "https://api.yelp.com/v3/businesses/search") do |faraday|
       faraday.headers["Authorization"] = Rails.application.credentials.yelp[:key]
@@ -14,6 +14,12 @@ class Api::V0::SpacesController < ApplicationController
     search_results = data.map do |space|
       SearchResult.new(space)
     end
+  end
+
+  private
+
+  def search_params
+    params.permit(:name, :city)
   end
 
 
