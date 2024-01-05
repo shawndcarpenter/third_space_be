@@ -14,6 +14,8 @@ class Api::V0::SpacesController < ApplicationController
     search_results = data.map do |space|
       SearchResult.new(space)
     end
+
+    render json: search_results
   end
 
   private
