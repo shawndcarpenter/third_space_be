@@ -1,14 +1,14 @@
 class Api::V0::SpacesController < ApplicationController
 
-  def nearest_spaces
-    lat = "35.077529"
-    lon = "-106.600449"
+  def create_third_spaces
+    name = "Five Watt"
+    address = "Minneapolis"
 
-    conn = Faraday.new(url: "https://api.tomtom.com/search/2/nearbySearch/.json") do |faraday|
-      faraday.params["key"] = Rails.application.credentials.tom_tom[:key]
+    conn = Faraday.new(url: "https://api.yelp.com/v3/businesses") do |faraday|
+      faraday.params["key"] = Rails.application.credentials.yelp[:key]
     end
 
-    response = conn.get("?lat=#{lat}&lon=#{lon}")
+    response = conn.get("/search?latitude=44.932850&longitude=-93.267130")
     data = JSON.parse(response.body, symbolize_names: true)
 
     require 'pry'; binding.pry
