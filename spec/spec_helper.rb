@@ -21,7 +21,7 @@ def space_search_data
                         name: "Five Watt", 
                         city: "Minneapolis")
 
-  get api_v0_search_spaces_path, params: { name: search_params.name, city: search_params.city }
+  get search_spaces_api_v0_spaces_path, params: { name: search_params.name, city: search_params.city }
 
   @response_body = JSON.parse(response.body, symbolize_names: true)
   @data = @response_body[:data]

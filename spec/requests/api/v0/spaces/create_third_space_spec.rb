@@ -3,15 +3,24 @@ require 'rails_helper'
 RSpec.describe "Create a Third Space", type: :request do
   before :each do
     space_search_data
+
+    json_response = File.read('spec/fixtures/five_watt_details.json')
+    stub_request(:get, "https://api.yelp.com/v3/businesses/5pWHnKN3_AIrXiyyqZ74pw").
+         with(
+           headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization'=>"#{Rails.application.credentials.yelp[:key]}",
+          'User-Agent'=>'Faraday v2.8.1'
+           }).
+         to_return(status: 200, body: json_response, headers: {})
   end
 
   describe 'Take the ID of previously searched location and create third space entry' do
-    xit 'can create a third space entry and store into database' do
-      selected_entry = create(:search_params, 
-                        name: "Five Watt", 
-                        city: "Minneapolis")
+    it 'can create a third space entry and store into database' do
+      selected_entry = @result
 
-      # get api_v0_search_spaces_path, params: { name: search_params.name, city: search_params.city }
+      get create_third_space_api_v0_spaces_path, params: { id: selected_entry[:id]}
 
       # expect(response).to be_successful
       

@@ -11,17 +11,13 @@ RSpec.describe "Search for Spaces to Create", type: :request do
                         name: "Five Watt", 
                         city: "Minneapolis")
 
-      get api_v0_search_spaces_path, params: { name: search_params.name, city: search_params.city }
+      get search_spaces_api_v0_spaces_path, params: { name: search_params.name, city: search_params.city }
 
       expect(response).to be_successful
       
-      # response_body = JSON.parse(response.body, symbolize_names: true)
-
       expect(response.status).to eq(200)
       expect(@response_body).to be_a Hash
       
-      # data = @response_body[:data]
-
       expect(@data.length).to eq(14)
 
       result = @data.first

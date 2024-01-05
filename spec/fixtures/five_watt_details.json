@@ -1,0 +1,100 @@
+{
+  "id": "5pWHnKN3_AIrXiyyqZ74pw",
+  "alias": "five-watt-coffee-minneapolis-5",
+  "name": "Five Watt Coffee",
+  "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/AyfUwUHqBKUHRtDMK8iPJw/o.jpg",
+  "is_claimed": true,
+  "is_closed": false,
+  "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-5?adjust_creative=rBxix910UMNvgaxUVJuRow&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=rBxix910UMNvgaxUVJuRow",
+  "phone": "+16122597519",
+  "display_phone": "(612) 259-7519",
+  "review_count": 334,
+  "categories": [
+      {
+          "alias": "coffee",
+          "title": "Coffee & Tea"
+      }
+  ],
+  "rating": 4.5,
+  "location": {
+      "address1": "3745 Nicollet Ave S",
+      "address2": null,
+      "address3": "",
+      "city": "Minneapolis",
+      "zip_code": "55409",
+      "country": "US",
+      "state": "MN",
+      "display_address": [
+          "3745 Nicollet Ave S",
+          "Minneapolis, MN 55409"
+      ],
+      "cross_streets": ""
+  },
+  "coordinates": {
+      "latitude": 44.934479,
+      "longitude": -93.277771
+  },
+  "photos": [
+      "https://s3-media2.fl.yelpcdn.com/bphoto/AyfUwUHqBKUHRtDMK8iPJw/o.jpg",
+      "https://s3-media3.fl.yelpcdn.com/bphoto/6Aq6taDnd1eSbwNYcD2KtA/o.jpg",
+      "https://s3-media3.fl.yelpcdn.com/bphoto/kypW8wYUYF2WgqJ9_3M7lQ/o.jpg"
+  ],
+  "price": "$$",
+  "hours": [
+      {
+          "open": [
+              {
+                  "is_overnight": false,
+                  "start": "0700",
+                  "end": "1800",
+                  "day": 0
+              },
+              {
+                  "is_overnight": false,
+                  "start": "0700",
+                  "end": "1800",
+                  "day": 1
+              },
+              {
+                  "is_overnight": false,
+                  "start": "0700",
+                  "end": "1800",
+                  "day": 2
+              },
+              {
+                  "is_overnight": false,
+                  "start": "0700",
+                  "end": "1800",
+                  "day": 3
+              },
+              {
+                  "is_overnight": false,
+                  "start": "0700",
+                  "end": "1800",
+                  "day": 4
+              },
+              {
+                  "is_overnight": false,
+                  "start": "0700",
+                  "end": "1800",
+                  "day": 5
+              },
+              {
+                  "is_overnight": false,
+                  "start": "0700",
+                  "end": "1800",
+                  "day": 6
+              }
+          ],
+          "hours_type": "REGULAR",
+          "is_open_now": false
+      }
+  ],
+  "transactions": [
+      "delivery"
+  ],
+  "messaging": {
+      "url": "https://www.yelp.com/raq/5pWHnKN3_AIrXiyyqZ74pw?adjust_creative=rBxix910UMNvgaxUVJuRow&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=rBxix910UMNvgaxUVJuRow#popup%3Araq",
+      "use_case_text": "Message the Business"
+  }
+}
