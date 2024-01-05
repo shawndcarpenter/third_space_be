@@ -28,9 +28,21 @@ class Api::V0::SpacesController < ApplicationController
     response = conn.get("#{id}")
     data = JSON.parse(response.body, symbolize_names: true)
 
-    third_space = data.map do |details|
-      ThirdSpace.new(details)
-    end
+    third_space = ThirdSpace.create(
+                                yelp_id: id,
+                                name: data[:name],
+                                address: data[:location][:display_address].join(", "), # Combine the address components
+                                rating: data[:rating],
+                                phone: data[:display_phone],
+                                photos: data[:photos],
+                                lat: data[:coordinates][:latitude],
+                                lon: data[:coordinates][:longitude],
+                                price: data[:price],
+                                hours: data[:hours],
+                                open_now: data[:hours].first[:is_open_now],  #Need to Clean this Up
+                                category: data[:categories].first[:title],
+                                tags: []
+                                )
 
   end
 
