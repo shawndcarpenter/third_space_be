@@ -19,7 +19,7 @@ RSpec.describe "Search for Spaces to Create", type: :request do
       expect(@response_body).to be_a Hash
       
       expect(@data.length).to eq(14)
-
+      
       result = @data.first
       expect(result).to have_key(:id)
 
