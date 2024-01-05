@@ -1,7 +1,9 @@
 # third_space_be
 
-NEED TO ADD:
+XXX NEED TO ADD:
 API instructions
+XXX include database schema
+XXX each endpoint is documented with example request & response
 
 # Third Space
 > This product aims to help users find locations for leisure activities near them which fit their mood and needs.
@@ -93,15 +95,15 @@ Both front end and back end use the [Pry gem](https://github.com/pry/pry) and [R
 
 Main Support Email: thirdspace2308@gmail.com
 
-Shawn Carpenter: shawncarpenter.co@gmail.com
+Shawn Carpenter: [Email](shawncarpenter.co@gmail.com) [LinkedIn](https://www.linkedin.com/in/shawndcarpenter/)
 
-Brendan Bondurant: bondurant.brendan@gmail.com
+Brendan Bondurant: [Email](bondurant.brendan@gmail.com) [LinkedIn](https://www.linkedin.com/in/brendanbondurant/)
 
-Nathan Trautenberg: ntrautenberg23@gmail.com
+Nathan Trautenberg: [Email](ntrautenberg23@gmail.com) [LinkedIn](https://www.linkedin.com/in/nathan-trautenberg-9106271a7/)
 
-Anthea Yur
+Anthea Yur: [Email]() [LinkedIn](https://www.linkedin.com/in/antheayur/)
 
-Charles Ren
+Charles Ren [Email]() [LinkedIn](https://www.linkedin.com/in/charles-ren-code/)
 
 ## Contributing
 
