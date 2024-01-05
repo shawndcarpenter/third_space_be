@@ -15,7 +15,7 @@ class Api::V0::SpacesController < ApplicationController
       SearchResult.new(space)
     end
 
-    render json: search_results
+    render json: SearchResultSerializer.new(search_results).serializable_hash
   end
 
   private

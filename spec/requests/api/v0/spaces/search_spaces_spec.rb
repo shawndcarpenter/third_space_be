@@ -14,23 +14,24 @@ RSpec.describe "Search for Spaces to Create", type: :request do
       response_body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(200)
-      expect(response_body).to be_a Array
-
+      expect(response_body).to be_a Hash
+      
       data = response_body[:data]
-      expect(data.length).to eq(10)
 
-      atm = data.first 
-      expect(atm).to have_key(:id)
+      expect(data.length).to eq(14)
 
-      atm = data.first[:attributes]
-      expect(atm[:id]).to be_nil
-  
-      expect(atm).to have_key(:name)
-      expect(atm[:name]).to eq("ATM")
-      expect(atm[:address]).to eq("3902 Central Avenue Southeast, Albuquerque, NM 87108")
-      expect(atm[:lat]).to eq(35.079044)
-      expect(atm[:lon]).to eq(-106.60068)
-      expect(atm[:distance]).to eq(169.766658)
+      result = data.first
+      expect(result).to have_key(:id)
+
+      result = data.first[:attributes]
+      expect(result[:id]).to eq("5pWHnKN3_AIrXiyyqZ74pw")
+      
+      expect(result).to have_key(:name)
+      expect(result[:name]).to eq("Five Watt Coffee")
+      expect(result).to have_key(:address)
+      expect(result[:address]).to eq("3745 Nicollet Ave S, Minneapolis, MN, 55409")
+      expect(result).to have_key(:category)
+      expect(result[:category]).to eq("Coffee & Tea")
     end
   end
 
