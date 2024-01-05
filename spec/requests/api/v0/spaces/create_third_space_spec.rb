@@ -72,8 +72,6 @@ RSpec.describe "Create a Third Space", type: :request do
 
       expect(result).to have_key(:open_now)
       expect(result[:open_now]).to eq(false)
-
-      binding.pry
     end
   end
 
