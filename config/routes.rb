@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v0 do
-      get '/create_spaces', to: 'spaces#create_spaces'
+      get '/search_spaces', to: 'spaces#search_spaces'
     end
   end
 end

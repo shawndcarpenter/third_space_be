@@ -7,7 +7,7 @@ RSpec.describe "Create New Third Spaces", type: :request do
       #                   name: "Five Watt", 
       #                   city: "Minneapolis")
 
-      get api_v0_create_spaces_path
+      get api_v0_search_spaces_path
       binding.pry
 
       expect(response).to be_successful
