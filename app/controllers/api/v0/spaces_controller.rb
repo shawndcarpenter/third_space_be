@@ -11,7 +11,9 @@ class Api::V0::SpacesController < ApplicationController
     response = conn.get("?location=#{city}&term=#{name}")
     data = JSON.parse(response.body, symbolize_names: true)[:businesses]
 
-    require 'pry'; binding.pry
+    search_results = data.map do |space|
+      SearchResult.new(space)
+    end
   end
 
 
