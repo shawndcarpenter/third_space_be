@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v0 do
-      get '/nearest_spaces', to: 'spaces#nearest_spaces'
+      get '/create_spaces', to: 'spaces#create_spaces'
     end
   end
 end

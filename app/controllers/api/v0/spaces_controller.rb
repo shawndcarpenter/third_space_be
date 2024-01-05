@@ -1,14 +1,14 @@
 class Api::V0::SpacesController < ApplicationController
 
-  def create_third_spaces
+  def create_spaces
     name = "Five Watt"
-    address = "Minneapolis"
+    city = "Minneapolis"
 
     conn = Faraday.new(url: "https://api.yelp.com/v3/businesses") do |faraday|
       faraday.params["key"] = Rails.application.credentials.yelp[:key]
     end
 
-    response = conn.get("/search?latitude=44.932850&longitude=-93.267130")
+    response = conn.get("/search?location=#{city}&term=#{name}")
     data = JSON.parse(response.body, symbolize_names: true)
 
     require 'pry'; binding.pry
