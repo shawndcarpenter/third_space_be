@@ -15,8 +15,7 @@ RSpec.describe SpaceSearchFacade do
     end
   end
 
-  xit 'parses json data' do
-    space_search_data
+  xit 'parses json data', :vcr do
     # not sure about this one, how to set it up
   end
 end

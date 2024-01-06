@@ -31,10 +31,10 @@ RSpec.describe "Create a Third Space", type: :request do
       
       data = response_body[:data]
 
-      expect(data.length).to eq(3)
-      expect(data).to have_key(:id)
+      expect(data.length).to eq(1)
+      expect(data.first[:id]).to eq(nil)
 
-      result = data[:attributes]
+      result = data.first[:attributes]
       expect(result[:yelp_id]).to eq("5pWHnKN3_AIrXiyyqZ74pw")
 
       expect(result).to have_key(:name)

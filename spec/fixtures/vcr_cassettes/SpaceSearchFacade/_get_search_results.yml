@@ -24,20 +24,20 @@ http_interactions:
       - keep-alive
       Content-Type:
       - application/json
-      Server:
-      - envoy
-      Ratelimit-Resettime:
-      - '2024-01-06T00:00:00+00:00'
       X-Zipkin-Id:
-      - 7857f486d59fee56
+      - 4512a307a340ea9b
+      Ratelimit-Resettime:
+      - '2024-01-07T00:00:00+00:00'
+      X-Routing-Service:
+      - routing-main--useast1-74f644dc4b-4sfln; site=public_api_v3
       X-B3-Sampled:
       - '0'
-      X-Routing-Service:
-      - routing-main--useast1-74f644dc4b-vvs49; site=public_api_v3
       Ratelimit-Dailylimit:
       - '500.0'
       Ratelimit-Remaining:
-      - '495.0'
+      - '499.0'
+      Server:
+      - envoy
       X-Mode:
       - ro
       X-Proxied:
@@ -49,11 +49,11 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Fri, 05 Jan 2024 22:22:57 GMT
+      - Sat, 06 Jan 2024 00:05:12 GMT
       Via:
       - 1.1 varnish
       X-Served-By:
-      - cache-den8220-DEN
+      - cache-den8243-DEN
       X-Cache:
       - MISS
       X-Cache-Hits:
@@ -85,17 +85,7 @@ http_interactions:
         "3745 Nicollet Ave S", "address2": null, "address3": "", "city": "Minneapolis",
         "zip_code": "55409", "country": "US", "state": "MN", "display_address": ["3745
         Nicollet Ave S", "Minneapolis, MN 55409"]}, "phone": "+16122597519", "display_phone":
-        "(612) 259-7519", "distance": 3598.8306366731654}, {"id": "Yr8l31FYHTy0Ese8qDMb5Q",
-        "alias": "dogwood-coffee-minneapolis", "name": "Dogwood Coffee", "image_url":
-        "https://s3-media3.fl.yelpcdn.com/bphoto/7XAo4bl4dcMUTvzNf7omyA/o.jpg", "is_closed":
-        false, "url": "https://www.yelp.com/biz/dogwood-coffee-minneapolis?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
-        "review_count": 72, "categories": [{"alias": "coffee", "title": "Coffee &
-        Tea"}], "rating": 4.5, "coordinates": {"latitude": 44.9482269, "longitude":
-        -93.2143555}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
-        "4021 E Lake St", "address2": "", "address3": "", "city": "Minneapolis", "zip_code":
-        "55406", "country": "US", "state": "MN", "display_address": ["4021 E Lake
-        St", "Minneapolis, MN 55406"]}, "phone": "+16128861585", "display_phone":
-        "(612) 886-1585", "distance": 6288.828284035744}, {"id": "DfknNHCmMLu2ZXtAUPecfw",
+        "(612) 259-7519", "distance": 3598.8306366731654}, {"id": "DfknNHCmMLu2ZXtAUPecfw",
         "alias": "spyhouse-coffee-minneapolis-5", "name": "Spyhouse Coffee", "image_url":
         "https://s3-media4.fl.yelpcdn.com/bphoto/Z75lq_AzzcGU2SJjgHvHfA/o.jpg", "is_closed":
         false, "url": "https://www.yelp.com/biz/spyhouse-coffee-minneapolis-5?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
@@ -105,7 +95,17 @@ http_interactions:
         "2451 Nicollet Ave", "address2": "", "address3": "", "city": "Minneapolis",
         "zip_code": "55404", "country": "US", "state": "MN", "display_address": ["2451
         Nicollet Ave", "Minneapolis, MN 55404"]}, "phone": "+16128713177", "display_phone":
-        "(612) 871-3177", "distance": 1346.9550954208792}, {"id": "QPLHkPXmaUp0za28xMPeRw",
+        "(612) 871-3177", "distance": 1346.9550954208792}, {"id": "Yr8l31FYHTy0Ese8qDMb5Q",
+        "alias": "dogwood-coffee-minneapolis", "name": "Dogwood Coffee", "image_url":
+        "https://s3-media3.fl.yelpcdn.com/bphoto/7XAo4bl4dcMUTvzNf7omyA/o.jpg", "is_closed":
+        false, "url": "https://www.yelp.com/biz/dogwood-coffee-minneapolis?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 72, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 4.5, "coordinates": {"latitude": 44.9482269, "longitude":
+        -93.2143555}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
+        "4021 E Lake St", "address2": "", "address3": "", "city": "Minneapolis", "zip_code":
+        "55406", "country": "US", "state": "MN", "display_address": ["4021 E Lake
+        St", "Minneapolis, MN 55406"]}, "phone": "+16128861585", "display_phone":
+        "(612) 886-1585", "distance": 6288.828284035744}, {"id": "QPLHkPXmaUp0za28xMPeRw",
         "alias": "rustica-bakery-minneapolis-3", "name": "Rustica Bakery", "image_url":
         "https://s3-media2.fl.yelpcdn.com/bphoto/ZcxaHJxPkmhcD4UVLVGsKw/o.jpg", "is_closed":
         false, "url": "https://www.yelp.com/biz/rustica-bakery-minneapolis-3?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
@@ -116,17 +116,7 @@ http_interactions:
         {"address1": "3220 W Lake St", "address2": "", "address3": "", "city": "Minneapolis",
         "zip_code": "55416", "country": "US", "state": "MN", "display_address": ["3220
         W Lake St", "Minneapolis, MN 55416"]}, "phone": "+16128221119", "display_phone":
-        "(612) 822-1119", "distance": 2953.5120201090313}, {"id": "2gHPWdUeiOkSdBnx_EFMsw",
-        "alias": "five-watt-coffee-minneapolis-6", "name": "Five Watt Coffee", "image_url":
-        "https://s3-media4.fl.yelpcdn.com/bphoto/hVupE7Ya5Pf4RQJMhLflmA/o.jpg", "is_closed":
-        false, "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-6?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
-        "review_count": 78, "categories": [{"alias": "coffee", "title": "Coffee &
-        Tea"}], "rating": 4.0, "coordinates": {"latitude": 44.991769, "longitude":
-        -93.243709}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
-        "861 E Hennepin Ave", "address2": "", "address3": null, "city": "Minneapolis",
-        "zip_code": "55414", "country": "US", "state": "MN", "display_address": ["861
-        E Hennepin Ave", "Minneapolis, MN 55414"]}, "phone": "+16123547189", "display_phone":
-        "(612) 354-7189", "distance": 4686.98163902473}, {"id": "7qd98YA5vv0ASuXGjVvn0A",
+        "(612) 822-1119", "distance": 2953.5120201090313}, {"id": "7qd98YA5vv0ASuXGjVvn0A",
         "alias": "patisserie-46-minneapolis", "name": "Patisserie 46", "image_url":
         "https://s3-media3.fl.yelpcdn.com/bphoto/3z2YR8AeSoSvAXXWT0ab1Q/o.jpg", "is_closed":
         false, "url": "https://www.yelp.com/biz/patisserie-46-minneapolis?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
@@ -138,8 +128,18 @@ http_interactions:
         "city": "Minneapolis", "zip_code": "55419", "country": "US", "state": "MN",
         "display_address": ["4552 Grand Ave S", "Minneapolis, MN 55419"]}, "phone":
         "+16123543257", "display_phone": "(612) 354-3257", "distance": 5113.385807609762},
-        {"id": "KHK_2Q7ry5tOrm8rHcPM1g", "alias": "spyhouse-coffee-roasters-minneapolis-3",
-        "name": "Spyhouse Coffee Roasters", "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/LY6KtlV-NLBwlWljcHUJuw/o.jpg",
+        {"id": "2gHPWdUeiOkSdBnx_EFMsw", "alias": "five-watt-coffee-minneapolis-6",
+        "name": "Five Watt Coffee", "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/hVupE7Ya5Pf4RQJMhLflmA/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-6?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 78, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 4.0, "coordinates": {"latitude": 44.991769, "longitude":
+        -93.243709}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
+        "861 E Hennepin Ave", "address2": "", "address3": null, "city": "Minneapolis",
+        "zip_code": "55414", "country": "US", "state": "MN", "display_address": ["861
+        E Hennepin Ave", "Minneapolis, MN 55414"]}, "phone": "+16123547189", "display_phone":
+        "(612) 354-7189", "distance": 4686.98163902473}, {"id": "KHK_2Q7ry5tOrm8rHcPM1g",
+        "alias": "spyhouse-coffee-roasters-minneapolis-3", "name": "Spyhouse Coffee
+        Roasters", "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/LY6KtlV-NLBwlWljcHUJuw/o.jpg",
         "is_closed": false, "url": "https://www.yelp.com/biz/spyhouse-coffee-roasters-minneapolis-3?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
         "review_count": 335, "categories": [{"alias": "coffee", "title": "Coffee &
         Tea"}], "rating": 3.5, "coordinates": {"latitude": 44.999091, "longitude":
@@ -180,5 +180,5 @@ http_interactions:
         "Saint Paul, MN 55102"]}, "phone": "+16517561662", "display_phone": "(651)
         756-1662", "distance": 13659.230706090366}], "total": 11, "region": {"center":
         {"longitude": -93.2904052734375, "latitude": 44.96558443188442}}}'
-  recorded_at: Fri, 05 Jan 2024 22:22:57 GMT
+  recorded_at: Sat, 06 Jan 2024 00:05:12 GMT
 recorded_with: VCR 6.2.0
