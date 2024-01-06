@@ -89,6 +89,8 @@ GEM
     factory_bot_rails (6.4.3)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     faraday (2.8.1)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -223,6 +225,7 @@ DEPENDENCIES
   bootsnap
   debug
   factory_bot_rails
+  faker
   faraday
   jsonapi-serializer
   pg (~> 1.1)
