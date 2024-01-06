@@ -164,22 +164,48 @@ describe "Third Places API Endpoint" do
     expect(space.tags).to eq(space_params[:tags])
   end
 
-  it "can update a third space" do
-    create_list(:third_space, 5)
-    space = ThirdSpace.all.first
-    expect(space.tags).to eq([])
+  context "#update" do
+    before(:each) do
+      create_list(:third_space, 5)
+      @space = ThirdSpace.all.first
 
-    space_params = ({
-      id: space.id,
-      tags: ["happy", "studious"]
-    })
+      expect(@space.tags).to eq([])
 
-    patch "/api/v1/third_spaces/#{space.id}", params: space_params
-    # binding.pry
-    expect(response).to be_successful
-    expect(response.status).to eq(200)
-    space_json = JSON.parse(response.body, symbolize_names: true)
-    expect(space_json[:data][:attributes][:tags]).to_not eq([])
-    expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious"])
+      @space_params = ({
+        id: @space.id,
+        tags: ["happy", "studious"]
+      })
+
+      @more_space_params = ({
+        id: @space.id,
+        tags: ["happy", "studious", "studious", "studious", "studious", "studious", "loud"]
+      })
+    end
+
+    it "can update a third space with no tags" do
+      patch "/api/v1/third_spaces/#{@space.id}", params: @space_params
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      space_json = JSON.parse(response.body, symbolize_names: true)
+      expect(space_json[:data][:attributes][:tags]).to_not eq([])
+      expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious"])
+    end
+
+    it "can update a third space and not overwrite existing tags" do
+      patch "/api/v1/third_spaces/#{@space.id}", params: @space_params
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      patch "/api/v1/third_spaces/#{@space.id}", params: @more_space_params
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      space_json = JSON.parse(response.body, symbolize_names: true)
+      expect(space_json[:data][:attributes][:tags]).to_not eq([])
+      expect(space_json[:data][:attributes][:tags]).to_not eq(["happy", "studious"])
+      expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious", "happy", "studious", "studious", "studious", "studious", "studious", "loud"])
+    end
   end
 end
