@@ -46,7 +46,11 @@ class Api::V1::ThirdSpacesController < ApplicationController
   def update
     third_space = ThirdSpace.find(params[:id])
 
-    render json: ThirdSpaceSerializer.new(ThirdSpace.update(params[:id], space_params))
+    if third_space
+      third_space.update!(tags: params[:tags])
+      # binding.pry
+      render json: ThirdSpaceSerializer.new(third_space)
+    end
   end
 
   def destroy
