@@ -20,7 +20,7 @@ RSpec.describe "Create a Third Space", type: :request do
     it 'can create a third space entry and store into database' do
       selected_entry = @result
 
-      get create_third_space_api_v0_spaces_path, params: { id: selected_entry[:id]}
+      post api_v1_third_spaces_path, params: { id: selected_entry[:id]}
 
       expect(response).to be_successful
       
@@ -30,11 +30,12 @@ RSpec.describe "Create a Third Space", type: :request do
       expect(response_body).to be_a Hash
       
       data = response_body[:data]
+      # binding.pry
+      expect(data.length).to eq(3)
 
-      expect(data.length).to eq(1)
-      expect(data.first[:id]).to eq(nil)
+      expect(data[:id]).to eq(nil)
 
-      result = data.first[:attributes]
+      result = data[:attributes]
       expect(result[:yelp_id]).to eq("5pWHnKN3_AIrXiyyqZ74pw")
 
       expect(result).to have_key(:name)
