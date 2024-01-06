@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe "Search for Spaces to Create", type: :request do
+  describe "Find businesses" do
+    it "will return an empty array if no businesses found", :vcr do
+      search_params = create(:search_params, 
+                        name: "Five Watt", 
+                        city: "Denver")
+      
+      get search_locations_api_v1_locations_path, params: { name: search_params.name, city: search_params.city } 
+
+      expect(response).to be_successful
+      
+      expect(response.status).to eq(200)
+      json =  JSON.parse(response.body, symbolize_names: true)
+      expect(json).to be_a Hash
+      expect(json[:data]).to eq([])
+    end
+  end
   before :each do
     space_search_data
   end
@@ -11,7 +27,7 @@ RSpec.describe "Search for Spaces to Create", type: :request do
                         name: "Five Watt", 
                         city: "Minneapolis")
 
-      get search_spaces_api_v0_spaces_path, params: { name: search_params.name, city: search_params.city }
+      get search_locations_api_v1_locations_path, params: { name: search_params.name, city: search_params.city }
 
       expect(response).to be_successful
       

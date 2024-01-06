@@ -112,9 +112,9 @@ RSpec.describe ThirdSpace do
       }
   }
 
-    search = ThirdSpace.new(attrs)
+    search = ThirdSpacePoro.new(attrs)
 
-    expect(search).to be_a ThirdSpace
+    expect(search).to be_a ThirdSpacePoro
     expect(search.address).to be_a(String)
     expect(search.category).to be_a(String)
     expect(search.hours).to be_a(Array)
