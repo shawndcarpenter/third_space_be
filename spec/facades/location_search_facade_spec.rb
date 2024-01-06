@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe SpaceSearchFacade do
-  
+RSpec.describe LocationSearchFacade do  
   it "#get search results", :vcr do
     name = "Five Watt", 
     city = "Minneapolis"
-    search_results = SpaceSearchFacade.new.get_search_results(name, city)
+    search_results = LocationSearchFacade.new(name, city).locations
+
     expect(search_results).to be_a(Array)
     search_results.each do |location|
       expect(location.address).to be_a(String)
@@ -13,9 +13,5 @@ RSpec.describe SpaceSearchFacade do
       expect(location.id).to be_a(String)
       expect(location.name).to be_a(String)
     end
-  end
-
-  xit 'parses json data', :vcr do
-    # not sure about this one, how to set it up
   end
 end

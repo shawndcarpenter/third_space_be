@@ -1,0 +1,184 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/search?location=Minneapolis&term=%5B%22Five%20Watt%22,%20%22Minneapolis%22%5D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - "<yelp>"
+      User-Agent:
+      - Faraday v2.8.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      X-Zipkin-Id:
+      - 4512a307a340ea9b
+      Ratelimit-Resettime:
+      - '2024-01-07T00:00:00+00:00'
+      X-Routing-Service:
+      - routing-main--useast1-74f644dc4b-4sfln; site=public_api_v3
+      X-B3-Sampled:
+      - '0'
+      Ratelimit-Dailylimit:
+      - '500.0'
+      Ratelimit-Remaining:
+      - '499.0'
+      Server:
+      - envoy
+      X-Mode:
+      - ro
+      X-Proxied:
+      - 10-65-102-1-useast1aprod
+      X-Extlb:
+      - 10-65-102-1-useast1aprod
+      Cache-Control:
+      - max-age=0, no-store, private, no-transform
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Sat, 06 Jan 2024 00:05:12 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-den8243-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      Alt-Svc:
+      - h3=":443";ma=86400,h3-29=":443";ma=86400,h3-27=":443";ma=86400
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"businesses": [{"id": "PRlPRN2Mimiy4hlY6WJK5w", "alias": "wesley-andrews-minneapolis",
+        "name": "Wesley Andrews", "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/PNVzOO2LN-CCDkE-nXMa-g/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/wesley-andrews-minneapolis?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 125, "categories": [{"alias": "coffeeroasteries", "title":
+        "Coffee Roasteries"}, {"alias": "coffee", "title": "Coffee & Tea"}], "rating":
+        4.5, "coordinates": {"latitude": 44.955368, "longitude": -93.276056}, "transactions":
+        ["delivery"], "price": "$$", "location": {"address1": "111 E 26th St", "address2":
+        null, "address3": "", "city": "Minneapolis", "zip_code": "55404", "country":
+        "US", "state": "MN", "display_address": ["111 E 26th St", "Minneapolis, MN
+        55404"]}, "phone": "+16124607739", "display_phone": "(612) 460-7739", "distance":
+        1601.6233996165372}, {"id": "5pWHnKN3_AIrXiyyqZ74pw", "alias": "five-watt-coffee-minneapolis-5",
+        "name": "Five Watt Coffee", "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/AyfUwUHqBKUHRtDMK8iPJw/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-5?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 334, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 4.5, "coordinates": {"latitude": 44.934479, "longitude":
+        -93.277771}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
+        "3745 Nicollet Ave S", "address2": null, "address3": "", "city": "Minneapolis",
+        "zip_code": "55409", "country": "US", "state": "MN", "display_address": ["3745
+        Nicollet Ave S", "Minneapolis, MN 55409"]}, "phone": "+16122597519", "display_phone":
+        "(612) 259-7519", "distance": 3598.8306366731654}, {"id": "DfknNHCmMLu2ZXtAUPecfw",
+        "alias": "spyhouse-coffee-minneapolis-5", "name": "Spyhouse Coffee", "image_url":
+        "https://s3-media4.fl.yelpcdn.com/bphoto/Z75lq_AzzcGU2SJjgHvHfA/o.jpg", "is_closed":
+        false, "url": "https://www.yelp.com/biz/spyhouse-coffee-minneapolis-5?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 267, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 3.5, "coordinates": {"latitude": 44.957463856048, "longitude":
+        -93.277702196634}, "transactions": [], "price": "$$", "location": {"address1":
+        "2451 Nicollet Ave", "address2": "", "address3": "", "city": "Minneapolis",
+        "zip_code": "55404", "country": "US", "state": "MN", "display_address": ["2451
+        Nicollet Ave", "Minneapolis, MN 55404"]}, "phone": "+16128713177", "display_phone":
+        "(612) 871-3177", "distance": 1346.9550954208792}, {"id": "Yr8l31FYHTy0Ese8qDMb5Q",
+        "alias": "dogwood-coffee-minneapolis", "name": "Dogwood Coffee", "image_url":
+        "https://s3-media3.fl.yelpcdn.com/bphoto/7XAo4bl4dcMUTvzNf7omyA/o.jpg", "is_closed":
+        false, "url": "https://www.yelp.com/biz/dogwood-coffee-minneapolis?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 72, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 4.5, "coordinates": {"latitude": 44.9482269, "longitude":
+        -93.2143555}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
+        "4021 E Lake St", "address2": "", "address3": "", "city": "Minneapolis", "zip_code":
+        "55406", "country": "US", "state": "MN", "display_address": ["4021 E Lake
+        St", "Minneapolis, MN 55406"]}, "phone": "+16128861585", "display_phone":
+        "(612) 886-1585", "distance": 6288.828284035744}, {"id": "QPLHkPXmaUp0za28xMPeRw",
+        "alias": "rustica-bakery-minneapolis-3", "name": "Rustica Bakery", "image_url":
+        "https://s3-media2.fl.yelpcdn.com/bphoto/ZcxaHJxPkmhcD4UVLVGsKw/o.jpg", "is_closed":
+        false, "url": "https://www.yelp.com/biz/rustica-bakery-minneapolis-3?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 431, "categories": [{"alias": "bakeries", "title": "Bakeries"},
+        {"alias": "coffee", "title": "Coffee & Tea"}, {"alias": "desserts", "title":
+        "Desserts"}], "rating": 4.0, "coordinates": {"latitude": 44.94946, "longitude":
+        -93.3202335067227}, "transactions": ["delivery"], "price": "$$", "location":
+        {"address1": "3220 W Lake St", "address2": "", "address3": "", "city": "Minneapolis",
+        "zip_code": "55416", "country": "US", "state": "MN", "display_address": ["3220
+        W Lake St", "Minneapolis, MN 55416"]}, "phone": "+16128221119", "display_phone":
+        "(612) 822-1119", "distance": 2953.5120201090313}, {"id": "7qd98YA5vv0ASuXGjVvn0A",
+        "alias": "patisserie-46-minneapolis", "name": "Patisserie 46", "image_url":
+        "https://s3-media3.fl.yelpcdn.com/bphoto/3z2YR8AeSoSvAXXWT0ab1Q/o.jpg", "is_closed":
+        false, "url": "https://www.yelp.com/biz/patisserie-46-minneapolis?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 426, "categories": [{"alias": "bakeries", "title": "Bakeries"},
+        {"alias": "coffee", "title": "Coffee & Tea"}, {"alias": "breakfast_brunch",
+        "title": "Breakfast & Brunch"}], "rating": 4.5, "coordinates": {"latitude":
+        44.91975, "longitude": -93.2848}, "transactions": ["delivery"], "price": "$$",
+        "location": {"address1": "4552 Grand Ave S", "address2": "", "address3": "",
+        "city": "Minneapolis", "zip_code": "55419", "country": "US", "state": "MN",
+        "display_address": ["4552 Grand Ave S", "Minneapolis, MN 55419"]}, "phone":
+        "+16123543257", "display_phone": "(612) 354-3257", "distance": 5113.385807609762},
+        {"id": "2gHPWdUeiOkSdBnx_EFMsw", "alias": "five-watt-coffee-minneapolis-6",
+        "name": "Five Watt Coffee", "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/hVupE7Ya5Pf4RQJMhLflmA/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-6?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 78, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 4.0, "coordinates": {"latitude": 44.991769, "longitude":
+        -93.243709}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
+        "861 E Hennepin Ave", "address2": "", "address3": null, "city": "Minneapolis",
+        "zip_code": "55414", "country": "US", "state": "MN", "display_address": ["861
+        E Hennepin Ave", "Minneapolis, MN 55414"]}, "phone": "+16123547189", "display_phone":
+        "(612) 354-7189", "distance": 4686.98163902473}, {"id": "KHK_2Q7ry5tOrm8rHcPM1g",
+        "alias": "spyhouse-coffee-roasters-minneapolis-3", "name": "Spyhouse Coffee
+        Roasters", "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/LY6KtlV-NLBwlWljcHUJuw/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/spyhouse-coffee-roasters-minneapolis-3?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 335, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 3.5, "coordinates": {"latitude": 44.999091, "longitude":
+        -93.246692}, "transactions": ["delivery"], "price": "$$", "location": {"address1":
+        "945 Broadway St NE", "address2": "", "address3": "", "city": "Minneapolis",
+        "zip_code": "55413", "country": "US", "state": "MN", "display_address": ["945
+        Broadway St NE", "Minneapolis, MN 55413"]}, "phone": "", "display_phone":
+        "", "distance": 5069.683341524837}, {"id": "_XG2doH3I3RFGPU8aKXkLg", "alias":
+        "wise-acre-eatery-minneapolis", "name": "Wise Acre Eatery", "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/4rDNt88iEUjQWkF0Isgieg/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/wise-acre-eatery-minneapolis?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 394, "categories": [{"alias": "breakfast_brunch", "title":
+        "Breakfast & Brunch"}, {"alias": "coffee", "title": "Coffee & Tea"}, {"alias":
+        "tapasmallplates", "title": "Tapas/Small Plates"}], "rating": 3.5, "coordinates":
+        {"latitude": 44.90499967032854, "longitude": -93.2776467}, "transactions":
+        ["delivery"], "price": "$$", "location": {"address1": "5401 Nicollet Ave S",
+        "address2": "", "address3": "", "city": "Minneapolis", "zip_code": "55419",
+        "country": "US", "state": "MN", "display_address": ["5401 Nicollet Ave S",
+        "Minneapolis, MN 55419"]}, "phone": "+16123542577", "display_phone": "(612)
+        354-2577", "distance": 6811.158453481987}, {"id": "ofULDI3mZy3T6L2zpPI8OQ",
+        "alias": "caydence-records-and-coffee-saint-paul", "name": "Caydence Records
+        and Coffee", "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/Hkq5ndUpnxUji8PfDUZ-3A/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/caydence-records-and-coffee-saint-paul?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 65, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}, {"alias": "vinyl_records", "title": "Vinyl Records"}], "rating": 4.5,
+        "coordinates": {"latitude": 44.96833, "longitude": -93.07329}, "transactions":
+        ["delivery"], "price": "$$", "location": {"address1": "900 Payne Ave", "address2":
+        "", "address3": null, "city": "Saint Paul", "zip_code": "55130", "country":
+        "US", "state": "MN", "display_address": ["900 Payne Ave", "Saint Paul, MN
+        55130"]}, "phone": "+16512076856", "display_phone": "(651) 207-6856", "distance":
+        17082.919027656746}, {"id": "IO5ywPh7xLoKNa1ADsrsWQ", "alias": "five-watt-coffee-saint-paul-2",
+        "name": "Five Watt Coffee", "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/URojayqfWTbi3mj_t8yFTQ/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/five-watt-coffee-saint-paul-2?adjust_creative=WR8j6bjFy9ZvXPCb5KGzFw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=WR8j6bjFy9ZvXPCb5KGzFw",
+        "review_count": 24, "categories": [{"alias": "coffee", "title": "Coffee &
+        Tea"}], "rating": 4.0, "coordinates": {"latitude": 44.928652089196, "longitude":
+        -93.1248726833697}, "transactions": ["delivery"], "location": {"address1":
+        "928 7th St W", "address2": "", "address3": null, "city": "Saint Paul", "zip_code":
+        "55102", "country": "US", "state": "MN", "display_address": ["928 7th St W",
+        "Saint Paul, MN 55102"]}, "phone": "+16517561662", "display_phone": "(651)
+        756-1662", "distance": 13659.230706090366}], "total": 11, "region": {"center":
+        {"longitude": -93.2904052734375, "latitude": 44.96558443188442}}}'
+  recorded_at: Sat, 06 Jan 2024 00:05:12 GMT
+recorded_with: VCR 6.2.0
