@@ -75,6 +75,8 @@ bundle exec rspec
 ## Gem Information
 The front end repository handles most of what the user will interact with, including routing and page rendering. 
 
+[Bootstrap](https://github.com/twbs/bootstrap-rubygem) was used extensively for design on the front end.
+
 ### Testing
 Our application includes extensive testing using the [Capybara gem](https://github.com/teamcapybara/capybara) to simulate user input and interaction.
 
@@ -86,6 +88,7 @@ The [Orderly Gem](https://github.com/jmondo/orderly) is used to check the order 
 
 The [SimpleCov Gem](https://github.com/simplecov-ruby/simplecov) provides test coverage analysis for our application.
 
+The [FactoryBot](https://github.com/thoughtbot/factory_bot) and [Faker Gems](https://github.com/faker-ruby/faker) was used to create large amounts of data for testing. 
 
 The back end handles API calls to the Yelp API as well as accepts post requests from the user for location moods. It simulates API calls using the [WebMock gem](https://github.com/bblimke/webmock) and the [VCR gem](https://github.com/vcr/vcr).
 
