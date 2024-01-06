@@ -199,6 +199,7 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    vcr (6.2.0)
     webmock (3.19.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -223,6 +224,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   rspec-rails
   tzinfo-data
+  vcr
   webmock
 
 RUBY VERSION
