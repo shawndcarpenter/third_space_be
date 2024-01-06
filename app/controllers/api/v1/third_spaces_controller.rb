@@ -45,10 +45,12 @@ class Api::V1::ThirdSpacesController < ApplicationController
 
   def update
     third_space = ThirdSpace.find(params[:id])
-
-    if third_space
+  
+    if third_space && third_space[:tags] == []
       third_space.update!(tags: params[:tags])
-      # binding.pry
+      render json: ThirdSpaceSerializer.new(third_space)
+    else
+      third_space.update!(tags: ([third_space[:tags]] + [params[:tags]]).flatten)
       render json: ThirdSpaceSerializer.new(third_space)
     end
   end
