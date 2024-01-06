@@ -163,4 +163,23 @@ describe "Third Places API Endpoint" do
     expect(space.category).to eq(space_params[:category])
     expect(space.tags).to eq(space_params[:tags])
   end
+
+  it "can update a third space" do
+    create_list(:third_space, 5)
+    space = ThirdSpace.all.first
+    expect(space.tags).to eq([])
+
+    space_params = ({
+      id: space.id,
+      tags: ["happy", "studious"]
+    })
+
+    patch "/api/v1/third_spaces/#{space.id}", params: space_params
+    # binding.pry
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+    space_json = JSON.parse(response.body, symbolize_names: true)
+    expect(space_json[:data][:attributes][:tags]).to_not eq([])
+    expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious"])
+  end
 end
