@@ -1,7 +1,7 @@
 class Api::V1::ThirdSpacesController < ApplicationController
   
   def index
-    spaces = ThirdSpace.all
+    spaces = ThirdSpace.includes(:markers).all
     render json: ThirdSpaceSerializer.new(spaces)
   end
 

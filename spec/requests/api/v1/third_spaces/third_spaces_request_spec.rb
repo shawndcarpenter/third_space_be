@@ -10,7 +10,6 @@ describe "Third Places API Endpoint" do
     expect(response.status).to eq(200)
 
     third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
-    # binding.pry
     expect(third_spaces.count).to eq(5)
 
     third_spaces.each do |space|
@@ -279,7 +278,7 @@ describe "Third Places API Endpoint" do
       delete api_v1_third_space_path(third_space.id)
       expect(ThirdSpace.all.count).to eq(5)
       expect(ThirdSpace.where(id: 126)).to be_empty
-
     end
+
   end
 end
