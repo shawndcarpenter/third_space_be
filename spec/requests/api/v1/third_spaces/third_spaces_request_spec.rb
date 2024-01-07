@@ -47,9 +47,6 @@ describe "Third Places API Endpoint" do
       expect(space[:attributes]).to have_key(:lon)
       expect(space[:attributes][:lon]).to be_a(Float)
 
-      expect(space[:attributes]).to have_key(:tags)
-      expect(space[:attributes][:tags]).to be_a(Array)
-
       expect(space[:attributes]).to have_key(:price)
       expect(space[:attributes][:price]).to be_a(String)
 
@@ -123,9 +120,6 @@ describe "Third Places API Endpoint" do
     expect(space[:attributes]).to have_key(:lon)
     expect(space[:attributes][:lon]).to be_a(Float)
 
-    expect(space[:attributes]).to have_key(:tags)
-    expect(space[:attributes][:tags]).to be_a(Array)
-
     expect(space[:attributes]).to have_key(:price)
     expect(space[:attributes][:price]).to be_a(String)
 
@@ -175,15 +169,12 @@ describe "Third Places API Endpoint" do
     expect(space.hours).to eq(space_params[:hours])
     expect(space.open_now).to eq(space_params[:open_now])
     expect(space.category).to eq(space_params[:category])
-    expect(space.tags).to eq(space_params[:tags])
   end
 
   context "#update" do
     before(:each) do
       create_list(:third_space, 5)
       @space = ThirdSpace.all.first
-
-      expect(@space.tags).to eq([])
 
       @space_params = ({
         id: @space.id,
@@ -227,8 +218,8 @@ describe "Third Places API Endpoint" do
       expect(response).to be_successful
       expect(response.status).to eq(200)
       space_json = JSON.parse(response.body, symbolize_names: true)
-      expect(space_json[:data][:attributes][:tags]).to_not eq([])
-      expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious"])
+      expect(space_json[:data][:attributes][:markers][0][:tags]).to_not eq([])
+      expect(space_json[:data][:attributes][:markers][0][:tags]).to eq(["happy", "studious"])
     end
 
     it "can update a third space and not overwrite existing tags" do
@@ -243,9 +234,9 @@ describe "Third Places API Endpoint" do
 
       space_json = JSON.parse(response.body, symbolize_names: true)
       # binding.pry
-      expect(space_json[:data][:attributes][:tags]).to_not eq([])
-      expect(space_json[:data][:attributes][:tags]).to_not eq(["happy", "studious"])
-      expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious", "happy", "studious", "studious", "studious", "studious", "studious", "loud"])
+      expect(space_json[:data][:attributes][:markers][0][:tags]).to_not eq([])
+      expect(space_json[:data][:attributes][:markers][0][:tags]).to_not eq(["happy", "studious"])
+      expect(space_json[:data][:attributes][:markers][0][:tags]).to eq(["happy", "studious", "happy", "studious", "studious", "studious", "studious", "studious", "loud"])
       expect(space_json[:data][:attributes][:markers][0][:volume]).to eq(["loud"])
       expect(space_json[:data][:attributes][:markers][0][:accessible_entrance]).to eq(["no"])
       expect(space_json[:data][:attributes][:markers][0][:customer_restrooms]).to eq(["no"])
