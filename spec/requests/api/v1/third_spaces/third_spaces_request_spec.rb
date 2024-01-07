@@ -251,5 +251,35 @@ describe "Third Places API Endpoint" do
       expect(space_json[:data][:attributes][:markers][0][:staff_responsiveness]).to eq(["pushy"])
       expect(space_json[:data][:attributes][:markers][0][:gender_neutral_restrooms]).to eq(["no"])
     end
+
+    it "can delete a new third space" do
+      space_params = ({ id: 126,
+                      yelp_id: "Juana Bea",
+                      name: "Barton Inc",
+                      address: "8761 DuBuque Lights",
+                      rating: 37.47,
+                      phone: "7842541779",
+                      photos: [],
+                      lat: 10.08,
+                      lon: 79.34,
+                      price: "FT\u{63F19}",
+                      hours: "Olive Hoyl",
+                      open_now: false,
+                      category: "German",
+                      tags: ["happy", "studious"]})
+  
+      post api_v1_third_spaces_path, params: space_params
+      expect(ThirdSpace.all.count).to eq(6)
+
+      third_space = ThirdSpace.find(126) 
+  
+      expect(response).to be_successful
+      expect(response.status).to eq(201)
+
+      delete api_v1_third_space_path(third_space.id)
+      expect(ThirdSpace.all.count).to eq(5)
+      expect(ThirdSpace.where(id: 126)).to be_empty
+
+    end
   end
 end
