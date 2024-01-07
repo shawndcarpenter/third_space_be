@@ -1,4 +1,4 @@
-class ThirdSpace
+class ThirdSpacePoro
   attr_reader :id, :yelp_id, :name, :address, :rating, :phone, :photos, :lat, :lon, :price, :hours, :category, :tags, :open_now
 
   def initialize(data)

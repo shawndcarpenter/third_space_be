@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/search?location=Denver&term=Five%20Watt
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - "<yelp>"
+      User-Agent:
+      - Faraday v2.8.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      X-B3-Sampled:
+      - '0'
+      Ratelimit-Dailylimit:
+      - '500.0'
+      Ratelimit-Remaining:
+      - '496.0'
+      Server:
+      - envoy
+      Ratelimit-Resettime:
+      - '2024-01-07T00:00:00+00:00'
+      X-Routing-Service:
+      - routing-main--useast1-74f644dc4b-tm5fc; site=public_api_v3
+      X-Zipkin-Id:
+      - 9af50d31d67d03ac
+      X-Mode:
+      - ro
+      X-Proxied:
+      - 10-65-82-48-useast1aprod
+      X-Extlb:
+      - 10-65-82-48-useast1aprod
+      Cache-Control:
+      - max-age=0, no-store, private, no-transform
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Sat, 06 Jan 2024 19:28:21 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-den8241-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      Alt-Svc:
+      - h3=":443";ma=86400,h3-29=":443";ma=86400,h3-27=":443";ma=86400
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"businesses": [], "total": 0, "region": {"center": {"longitude": -104.97024536132812,
+        "latitude": 39.73552421220229}}}'
+  recorded_at: Sat, 06 Jan 2024 19:28:21 GMT
+recorded_with: VCR 6.2.0

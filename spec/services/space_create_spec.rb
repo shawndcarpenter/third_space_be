@@ -11,7 +11,7 @@ describe ThirdSpaceService do
       it "searches a specific id", :vcr do
         id = "f-m7-hyFzkf0HSEeQ2s-9A"
         search = ThirdSpaceService.new.get_space_details(id)
-        expect(search).to be_a Faraday::Response
+        expect(search).to be_a Hash
       end
     end
   end

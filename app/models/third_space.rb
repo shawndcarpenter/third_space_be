@@ -1,0 +1,3 @@
+class ThirdSpace < ApplicationRecord
+
+end

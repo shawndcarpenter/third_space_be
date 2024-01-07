@@ -1,13 +1,11 @@
 class ThirdSpaceFacade
-  def get_space_details(id)
-    @service = ThirdSpaceService.new
-    @result_data = parse_json(@service.get_space_details(id))
+  def initialize(id)
+    @id = id
   end
-
-  def parse_json(data)
-    data = JSON.parse(data.body, symbolize_names: true)
-    array = []
-    array << ThirdSpace.new(data)
-    array
+  
+  def space
+    service = ThirdSpaceService.new
+    json = service.get_space_details(@id)
+    ThirdSpacePoro.new(json)
   end
 end
