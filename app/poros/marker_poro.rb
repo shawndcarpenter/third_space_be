@@ -12,7 +12,8 @@ class ThirdSpacePoro
               :public_transportation_nearby, 
               :bipoc_friendly, 
               :queer_friendly, 
-              :staff_responsiveness
+              :staff_responsiveness,
+              :tags
 
   def initialize
     @gender_neutral_restrooms = []
@@ -28,4 +29,5 @@ class ThirdSpacePoro
     @bipoc_friendly = []
     @queer_friendly = []
     @staff_responsiveness = []
+    @tags = []
 end

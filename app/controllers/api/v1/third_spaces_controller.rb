@@ -11,7 +11,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
     # else
     render json: 
     ThirdSpaceSerializer.new(ThirdSpace.find(params[:id]), include: ['markers'])
-    # binding.pry
+
     #   if !third_space
     #     create_third_space
     #   end
@@ -40,7 +40,6 @@ class Api::V1::ThirdSpacesController < ApplicationController
     third_space = ThirdSpace.create(space_params)
     third_space.markers.create!
     update_all(third_space.markers.first, params)
-    third_space.update!(tags: ([third_space[:tags]] + params[:tags]).flatten.reject(&:blank?))
   
     render json: ThirdSpaceSerializer.new(third_space), status: 201
   end
@@ -50,9 +49,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
     if third_space.markers == []
       third_space.markers.create!
     end
-    # third_space.markers.first
-    # binding.pry
-    third_space.update!(tags: ([third_space[:tags]] + params[:tags]).flatten.reject(&:blank?))
+
     update_all(third_space.markers.first, params)
     render json: ThirdSpaceSerializer.new(third_space)
   end
@@ -66,6 +63,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
 
   private
   def update_all(marker, params)
+    marker.update!(tags: ([marker[:tags]] + params[:tags]).flatten.reject(&:blank?))
     marker.update!(gender_neutral_restrooms: ([marker[:gender_neutral_restrooms]] + [params[:gender_neutral_restrooms]]).flatten.reject(&:blank?))
     marker.update!(volume: ([marker[:volume]] + [params[:volume]]).flatten.reject(&:blank?))
     marker.update!(accessible_entrance: ([marker[:accessible_entrance]] + [params[:accessible_entrance]]).flatten.reject(&:blank?))
