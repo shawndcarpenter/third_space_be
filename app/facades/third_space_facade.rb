@@ -1,6 +1,6 @@
-class SpaceCreateFacade
+class ThirdSpaceFacade
   def get_space_details(id)
-    @service = SpaceCreateService.new
+    @service = ThirdSpaceService.new
     @result_data = parse_json(@service.get_space_details(id))
   end
 
