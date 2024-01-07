@@ -68,6 +68,34 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
 
   def space_params
-    params.permit(:id, :yelp_id, :name, :address, :rating, :phone, :photos, :lat, :lon, :price, :hours, :category, :tags, :open_now)
+    params.permit(
+                :id, 
+                :yelp_id, 
+                :name, 
+                :address, 
+                :rating, 
+                :phone, 
+                :photos, 
+                :lat, 
+                :lon, 
+                :price, 
+                :hours, 
+                :category, 
+                :tags, 
+                :open_now,               
+                :gender_neutral_restrooms, 
+                :volume, 
+                :accessible_entrance, 
+                :customer_restrooms, 
+                :parking, 
+                :purchase_necessary, 
+                :sober, 
+                :child_friendly, 
+                :light_level, 
+                :public_transportation_nearby, 
+                :bipoc_friendly, 
+                :queer_friendly, 
+                :staff_responsiveness
+                )
   end
 end
