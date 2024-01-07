@@ -38,7 +38,8 @@ class Api::V1::ThirdSpacesController < ApplicationController
     #   render json: ThirdSpaceSerializer.new(space).serializable_hash
     # end
     third_space = ThirdSpace.create(space_params)
-    # update_all(space, params)
+    third_space.markers.create!
+    update_all(third_space.markers.first, params)
     third_space.update!(tags: ([third_space[:tags]] + params[:tags]).flatten.reject(&:blank?))
   
     render json: ThirdSpaceSerializer.new(third_space), status: 201
