@@ -66,6 +66,7 @@ describe "Third Places API Endpoint" do
 
   it "sends a specific third place" do
     create_list(:third_space, 5)
+
     id = ThirdSpace.all.first.id
 
     get "/api/v1/third_spaces/#{id}"
@@ -122,5 +123,44 @@ describe "Third Places API Endpoint" do
 
     expect(space[:attributes]).to have_key(:open_now)
     expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
+  end
+
+  it "can create a new third space" do
+    space_params = ({ id: 126,
+                    yelp_id: "Juana Bea",
+                    name: "Barton Inc",
+                    address: "8761 DuBuque Lights",
+                    rating: 37.47,
+                    phone: "7842541779",
+                    photos: [],
+                    lat: 10.08,
+                    lon: 79.34,
+                    price: "FT\u{63F19}",
+                    hours: "Olive Hoyl",
+                    open_now: false,
+                    category: "German",
+                    tags: ["happy", "studious"]})
+     
+    expect(ThirdSpace.all.length).to eq(0)
+
+    post api_v1_third_spaces_path, params: space_params
+    
+    space = ThirdSpace.last 
+
+    expect(response).to be_successful
+    expect(response.status).to eq(201)
+    expect(ThirdSpace.all.length).to eq(1)
+
+    expect(space.name).to eq(space_params[:name])
+    expect(space.address).to eq(space_params[:address])
+    expect(space.rating).to eq(space_params[:rating])
+    expect(space.phone).to eq(space_params[:phone])
+    expect(space.lat).to eq(space_params[:lat])
+    expect(space.lon).to eq(space_params[:lon])
+    expect(space.price).to eq(space_params[:price])
+    expect(space.hours).to eq(space_params[:hours])
+    expect(space.open_now).to eq(space_params[:open_now])
+    expect(space.category).to eq(space_params[:category])
+    expect(space.tags).to eq(space_params[:tags])
   end
 end

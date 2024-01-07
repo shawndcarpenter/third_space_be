@@ -21,22 +21,26 @@ class Api::V1::ThirdSpacesController < ApplicationController
   def create
     # if third spaces hash does not include yelp_id, create a third space
     # else, update hash
-    yelp_id = params[:id]
-    third_spaces = ThirdSpace.all
-    if !third_spaces.empty?
-      third_space = third_spaces.where("yelp_id = #{yelp_id}")
-      if third_space == []
-        space = ThirdSpaceFacade.new(yelp_id).space
-        binding.pry
-        ThirdSpace.new(space)
-        # render json: ThirdSpaceSerializer.new(facade).serializable_hash
-      else
-        third_space.first
-      end
-    else
-      space = ThirdSpaceFacade.new(yelp_id).space
-      render json: ThirdSpaceSerializer.new(space).serializable_hash
-    end
+    # yelp_id = params[:id]
+    # third_spaces = ThirdSpace.all
+    # if !third_spaces.empty?
+    #   third_space = third_spaces.where("yelp_id = #{yelp_id}")
+    #   if third_space == []
+    #     space = ThirdSpaceFacade.new(yelp_id).space
+    #     binding.pry
+    #     ThirdSpace.new(space)
+    #     # render json: ThirdSpaceSerializer.new(facade).serializable_hash
+    #   else
+    #     third_space.first
+    #   end
+    # else
+    #   space = ThirdSpaceFacade.new(yelp_id).space
+    #   render json: ThirdSpaceSerializer.new(space).serializable_hash
+    # end
+    space = ThirdSpace.create(space_params)
+    space.update!(tags: params[:tags])
+  
+    render json: ThirdSpaceSerializer.new(space), status: 201
   end
 
   def update

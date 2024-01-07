@@ -17,7 +17,7 @@ RSpec.describe "Create a Third Space", type: :request do
   end
 
   describe 'Take the ID of previously searched location and create third space entry' do
-    it 'can create a third space entry and store into database' do
+    xit 'can create a third space entry and store into database' do
       selected_entry = @result
 
       post api_v1_third_spaces_path, params: { id: selected_entry[:id]}
@@ -26,14 +26,14 @@ RSpec.describe "Create a Third Space", type: :request do
       
       response_body = JSON.parse(response.body, symbolize_names: true)
 
-      expect(response.status).to eq(200)
+      expect(response.status).to eq(201)
       expect(response_body).to be_a Hash
       
       data = response_body[:data]
-      # binding.pry
-      expect(data.length).to eq(3)
 
-      expect(data[:id]).to eq(nil)
+      expect(data.length).to eq(3)
+      binding.pry
+      expect(data[:id]).to eq("5")
 
       result = data[:attributes]
       expect(result[:yelp_id]).to eq("5pWHnKN3_AIrXiyyqZ74pw")
