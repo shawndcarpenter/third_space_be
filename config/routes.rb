@@ -17,6 +17,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+
+      resources :users, only: [:show] do
+        resources :third_spaces, only: [:index], :controller=>:users
+      end
+
+
       resources :third_spaces do
         collection do
           get :create_third_space
