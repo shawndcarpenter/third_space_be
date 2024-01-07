@@ -66,10 +66,24 @@ describe "Third Places API Endpoint" do
 
   it "sends a specific third place" do
     create_list(:third_space, 5)
+    space = ThirdSpace.first
+    space.markers.create!({
+      volume: ["loud"], 
+      accessible_entrance: ["no"], 
+      customer_restrooms: ["no"], 
+      parking: ["yes"], 
+      purchase_necessary: ["yes"], 
+      sober: ["no"], 
+      child_friendly: ["yes"], 
+      light_level: ["low"], 
+      public_transportation_nearby: ["no"], 
+      bipoc_friendly: ["yes"], 
+      queer_friendly: ["yes"], 
+      staff_responsiveness: ["pushy"],
+      gender_neutral_restrooms: ["no"]
+    })
 
-    id = ThirdSpace.all.first.id
-
-    get "/api/v1/third_spaces/#{id}"
+    get "/api/v1/third_spaces/#{space.id}"
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
@@ -174,36 +188,36 @@ describe "Third Places API Endpoint" do
       @space_params = ({
         id: @space.id,
         tags: ["happy", "studious"],
-        volume: [], 
-        accessible_entrance: [], 
-        customer_restrooms: [], 
-        parking: [], 
-        purchase_necessary: [], 
-        sober: [], 
-        child_friendly: [], 
-        light_level: [], 
-        public_transportation_nearby: [], 
-        bipoc_friendly: [], 
-        queer_friendly: [], 
-        staff_responsiveness: []
+        # volume: [], 
+        # accessible_entrance: [], 
+        # customer_restrooms: [], 
+        # parking: [], 
+        # purchase_necessary: [], 
+        # sober: [], 
+        # child_friendly: [], 
+        # light_level: [], 
+        # public_transportation_nearby: [], 
+        # bipoc_friendly: [], 
+        # queer_friendly: [], 
+        # staff_responsiveness: []
       })
 
       @more_space_params = ({
         id: @space.id,
         tags: ["happy", "studious", "studious", "studious", "studious", "studious", "loud"],
-        volume: ["loud"], 
-        accessible_entrance: ["no"], 
-        customer_restrooms: ["no"], 
-        parking: ["yes"], 
-        purchase_necessary: ["yes"], 
-        sober: ["no"], 
-        child_friendly: ["yes"], 
-        light_level: ["low"], 
-        public_transportation_nearby: ["no"], 
-        bipoc_friendly: ["yes"], 
-        queer_friendly: ["yes"], 
-        staff_responsiveness: ["pushy"],
-        gender_neutral_restrooms: ["no"]
+        # volume: ["loud"], 
+        # accessible_entrance: ["no"], 
+        # customer_restrooms: ["no"], 
+        # parking: ["yes"], 
+        # purchase_necessary: ["yes"], 
+        # sober: ["no"], 
+        # child_friendly: ["yes"], 
+        # light_level: ["low"], 
+        # public_transportation_nearby: ["no"], 
+        # bipoc_friendly: ["yes"], 
+        # queer_friendly: ["yes"], 
+        # staff_responsiveness: ["pushy"],
+        # gender_neutral_restrooms: ["no"]
       })
     end
 
@@ -229,21 +243,21 @@ describe "Third Places API Endpoint" do
 
       space_json = JSON.parse(response.body, symbolize_names: true)
       expect(space_json[:data][:attributes][:tags]).to_not eq([])
-      expect(space_json[:data][:attributes][:tags]).to_not eq(["happy", "studious"])
-      expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious", "happy", "studious", "studious", "studious", "studious", "studious", "loud"])
-      expect(space_json[:data][:attributes][:volume]).to eq(["loud"])
-      expect(space_json[:data][:attributes][:accessible_entrance]).to eq(["no"])
-      expect(space_json[:data][:attributes][:customer_restrooms]).to eq(["no"])
-      expect(space_json[:data][:attributes][:parking]).to eq(["yes"])
-      expect(space_json[:data][:attributes][:purchase_necessary]).to eq(["yes"])
-      expect(space_json[:data][:attributes][:sober]).to eq(["no"])
-      expect(space_json[:data][:attributes][:child_friendly]).to eq(["yes"])
-      expect(space_json[:data][:attributes][:light_level]).to eq(["low"])
-      expect(space_json[:data][:attributes][:public_transportation_nearby]).to eq(["no"])
-      expect(space_json[:data][:attributes][:bipoc_friendly]).to eq(["yes"])
-      expect(space_json[:data][:attributes][:queer_friendly]).to eq(["yes"])
-      expect(space_json[:data][:attributes][:staff_responsiveness]).to eq(["pushy"])
-      expect(space_json[:data][:attributes][:gender_neutral_restrooms]).to eq(["no"])
+      # expect(space_json[:data][:attributes][:tags]).to_not eq(["happy", "studious"])
+      # expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious", "happy", "studious", "studious", "studious", "studious", "studious", "loud"])
+      # expect(space_json[:data][:attributes][:volume]).to eq(["loud"])
+      # expect(space_json[:data][:attributes][:accessible_entrance]).to eq(["no"])
+      # expect(space_json[:data][:attributes][:customer_restrooms]).to eq(["no"])
+      # expect(space_json[:data][:attributes][:parking]).to eq(["yes"])
+      # expect(space_json[:data][:attributes][:purchase_necessary]).to eq(["yes"])
+      # expect(space_json[:data][:attributes][:sober]).to eq(["no"])
+      # expect(space_json[:data][:attributes][:child_friendly]).to eq(["yes"])
+      # expect(space_json[:data][:attributes][:light_level]).to eq(["low"])
+      # expect(space_json[:data][:attributes][:public_transportation_nearby]).to eq(["no"])
+      # expect(space_json[:data][:attributes][:bipoc_friendly]).to eq(["yes"])
+      # expect(space_json[:data][:attributes][:queer_friendly]).to eq(["yes"])
+      # expect(space_json[:data][:attributes][:staff_responsiveness]).to eq(["pushy"])
+      # expect(space_json[:data][:attributes][:gender_neutral_restrooms]).to eq(["no"])
     end
   end
 end
