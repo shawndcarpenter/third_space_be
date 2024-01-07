@@ -163,4 +163,87 @@ describe "Third Places API Endpoint" do
     expect(space.category).to eq(space_params[:category])
     expect(space.tags).to eq(space_params[:tags])
   end
+
+  context "#update" do
+    before(:each) do
+      create_list(:third_space, 5)
+      @space = ThirdSpace.all.first
+
+      expect(@space.tags).to eq([])
+
+      @space_params = ({
+        id: @space.id,
+        tags: ["happy", "studious"],
+        volume: [], 
+        accessible_entrance: [], 
+        customer_restrooms: [], 
+        parking: [], 
+        purchase_necessary: [], 
+        sober: [], 
+        child_friendly: [], 
+        light_level: [], 
+        public_transportation_nearby: [], 
+        bipoc_friendly: [], 
+        queer_friendly: [], 
+        staff_responsiveness: []
+      })
+
+      @more_space_params = ({
+        id: @space.id,
+        tags: ["happy", "studious", "studious", "studious", "studious", "studious", "loud"],
+        volume: ["loud"], 
+        accessible_entrance: ["no"], 
+        customer_restrooms: ["no"], 
+        parking: ["yes"], 
+        purchase_necessary: ["yes"], 
+        sober: ["no"], 
+        child_friendly: ["yes"], 
+        light_level: ["low"], 
+        public_transportation_nearby: ["no"], 
+        bipoc_friendly: ["yes"], 
+        queer_friendly: ["yes"], 
+        staff_responsiveness: ["pushy"],
+        gender_neutral_restrooms: ["no"]
+      })
+    end
+
+    it "can update a third space with no tags" do
+      patch "/api/v1/third_spaces/#{@space.id}", params: @space_params
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      space_json = JSON.parse(response.body, symbolize_names: true)
+      expect(space_json[:data][:attributes][:tags]).to_not eq([])
+      expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious"])
+    end
+
+    it "can update a third space and not overwrite existing tags" do
+      patch "/api/v1/third_spaces/#{@space.id}", params: @space_params
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      patch "/api/v1/third_spaces/#{@space.id}", params: @more_space_params
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      space_json = JSON.parse(response.body, symbolize_names: true)
+      expect(space_json[:data][:attributes][:tags]).to_not eq([])
+      expect(space_json[:data][:attributes][:tags]).to_not eq(["happy", "studious"])
+      expect(space_json[:data][:attributes][:tags]).to eq(["happy", "studious", "happy", "studious", "studious", "studious", "studious", "studious", "loud"])
+      expect(space_json[:data][:attributes][:volume]).to eq(["loud"])
+      expect(space_json[:data][:attributes][:accessible_entrance]).to eq(["no"])
+      expect(space_json[:data][:attributes][:customer_restrooms]).to eq(["no"])
+      expect(space_json[:data][:attributes][:parking]).to eq(["yes"])
+      expect(space_json[:data][:attributes][:purchase_necessary]).to eq(["yes"])
+      expect(space_json[:data][:attributes][:sober]).to eq(["no"])
+      expect(space_json[:data][:attributes][:child_friendly]).to eq(["yes"])
+      expect(space_json[:data][:attributes][:light_level]).to eq(["low"])
+      expect(space_json[:data][:attributes][:public_transportation_nearby]).to eq(["no"])
+      expect(space_json[:data][:attributes][:bipoc_friendly]).to eq(["yes"])
+      expect(space_json[:data][:attributes][:queer_friendly]).to eq(["yes"])
+      expect(space_json[:data][:attributes][:staff_responsiveness]).to eq(["pushy"])
+      expect(space_json[:data][:attributes][:gender_neutral_restrooms]).to eq(["no"])
+    end
+  end
 end

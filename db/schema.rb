@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_05_070833) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_07_000126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["latitude"], name: "index_locations_on_latitude"
+    t.index ["longitude"], name: "index_locations_on_longitude"
+  end
 
   create_table "search_params", force: :cascade do |t|
     t.string "name"
@@ -37,6 +48,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_05_070833) do
     t.string "tags", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "gender_neutral_restrooms", default: [], array: true
+    t.text "volume", default: [], array: true
+    t.text "accessible_entrance", default: [], array: true
+    t.text "customer_restrooms", default: [], array: true
+    t.text "parking", default: [], array: true
+    t.text "purchase_necessary", default: [], array: true
+    t.text "sober", default: [], array: true
+    t.text "child_friendly", default: [], array: true
+    t.text "light_level", default: [], array: true
+    t.text "public_transportation_nearby", default: [], array: true
+    t.text "bipoc_friendly", default: [], array: true
+    t.text "queer_friendly", default: [], array: true
+    t.text "staff_responsiveness", default: [], array: true
   end
-
 end
