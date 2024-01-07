@@ -57,7 +57,10 @@ class Api::V1::ThirdSpacesController < ApplicationController
   def destroy
     third_space = ThirdSpace.find(params[:id])
     if third_space
-      render json: ThirdSpace.delete(params[:id])
+      third_space.destroy
+      render json: { message: 'Record successfully destroyed' }
+    else
+      render json: { error: 'Record not found' }, status: :not_found
     end
   end
 
