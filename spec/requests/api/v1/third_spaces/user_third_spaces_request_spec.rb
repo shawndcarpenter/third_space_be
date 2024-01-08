@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Third Places API Endpoint" do
+describe "Get Third Places API Endpoint" do
   it "sends a list of user third places" do
     user = User.create!
     user_2 = User.create!
@@ -64,5 +64,38 @@ describe "Third Places API Endpoint" do
       expect(space[:attributes]).to have_key(:open_now)
       expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
     end
+  end
+
+  it "can add a user third space" do
+    user = User.create!
+    space = create(:third_space)
+
+    expect(user.third_spaces).to_not include(space)
+    user_third_space_params =  {
+      user_id: user.id,
+      third_space_id: space.id
+    }   
+
+    post "/api/v1/user_third_spaces", params: user_third_space_params
+    
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    third_spaces = JSON.parse(response.body, symbolize_names: true)[:included]
+    user_space = third_spaces.first
+ 
+    expect(third_spaces.count).to eq(1)
+    expect(user_space[:attributes][:yelp_id]).to eq(space.yelp_id)
+    expect(user_space[:attributes][:name]).to eq(space.name)
+    expect(user_space[:attributes][:address]).to eq(space.address)
+    expect(user_space[:attributes][:rating]).to eq(space.rating)
+    expect(user_space[:attributes][:phone]).to eq(space.phone)
+    expect(user_space[:attributes][:photos]).to eq(space.photos)
+    expect(user_space[:attributes][:lat]).to eq(space.lat)
+    expect(user_space[:attributes][:lon]).to eq(space.lon)
+    expect(user_space[:attributes][:price]).to eq(space.price)
+    expect(user_space[:attributes][:hours]).to eq(space.hours)
+    expect(user_space[:attributes][:category]).to eq(space.category)
+    expect(user_space[:attributes][:open_now]).to eq(space.open_now)
   end
 end

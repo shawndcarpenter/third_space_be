@@ -224,6 +224,7 @@ describe "Third Places API Endpoint" do
 
     it "can update a third space and not overwrite existing tags" do
       patch "/api/v1/third_spaces/#{@space.id}", params: @space_params
+      
       expect(response).to be_successful
       expect(response.status).to eq(200)
 
@@ -233,7 +234,7 @@ describe "Third Places API Endpoint" do
       expect(response.status).to eq(200)
 
       space_json = JSON.parse(response.body, symbolize_names: true)
-      # binding.pry
+
       expect(space_json[:data][:attributes][:markers][0][:tags]).to_not eq([])
       expect(space_json[:data][:attributes][:markers][0][:tags]).to_not eq(["happy", "studious"])
       expect(space_json[:data][:attributes][:markers][0][:tags]).to eq(["happy", "studious", "happy", "studious", "studious", "studious", "studious", "studious", "loud"])
