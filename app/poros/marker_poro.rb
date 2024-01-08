@@ -30,4 +30,5 @@ class ThirdSpacePoro
     @queer_friendly = []
     @staff_responsiveness = []
     @tags = []
+  end
 end

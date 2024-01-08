@@ -72,6 +72,9 @@ GEM
     bootsnap (1.17.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bullet (7.1.5)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
     crack (0.4.5)
@@ -120,14 +123,14 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
-    net-imap (0.4.9)
+    net-imap (0.4.9.1)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-smtp (0.4.0)
+    net-smtp (0.4.0.1)
       net-protocol
     nio4r (2.7.0)
     nokogiri (1.16.0-arm64-darwin)
@@ -176,7 +179,7 @@ GEM
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
-    reline (0.4.1)
+    reline (0.4.2)
       io-console (~> 0.5)
     rexml (3.2.6)
     rspec-core (3.12.2)
@@ -208,6 +211,7 @@ GEM
     timeout (0.4.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uniform_notifier (1.16.0)
     vcr (6.2.0)
     webmock (3.19.1)
       addressable (>= 2.8.0)
@@ -223,6 +227,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bullet
   debug
   factory_bot_rails
   faker

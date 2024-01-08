@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resources :third_spaces do
         collection do
           get :create_third_space
+          delete :destroy_third_space
         end 
       end
 

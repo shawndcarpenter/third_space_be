@@ -2,6 +2,7 @@
 require 'simplecov'
 SimpleCov.start
 require 'spec_helper'
+require "bullet"
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
@@ -19,6 +20,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.default_cassette_options = { re_record_interval: 365.days}
 end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -41,7 +43,9 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
 RSpec.configure do |config|
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
 
