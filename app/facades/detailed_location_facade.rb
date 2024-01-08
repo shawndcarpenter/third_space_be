@@ -1,4 +1,4 @@
-class LocationSearchFacade
+class DetailedLocationFacade
   def initialize(yelp_id)
     @yelp_id = yelp_id
   end
@@ -6,6 +6,9 @@ class LocationSearchFacade
   def location
     service = DetailedLocationService.new
     json = service.find_location(@yelp_id)
-    SearchResult.new(json)
+    # binding.pry
+    unless json[:error]
+      DetailedLocation.new(json)
+    end
   end
 end
