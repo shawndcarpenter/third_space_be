@@ -32,7 +32,7 @@ Rails.application.routes.draw do
         end 
       end
 
-      resources :locations, only: [] do
+      resources :locations, only: [:show] do
         collection do
           get :search_locations
         end 
