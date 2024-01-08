@@ -132,6 +132,51 @@ describe "Third Places SEARCH API Endpoint" do
     expect(space[:attributes][:markers][0][:tags]).to eq(@space_5_params[:tags])
     expect(space[:attributes][:markers][0][:volume]).to eq(@space_5_params[:volume])
     expect(space[:attributes][:markers][0][:accessible_entrance]).to eq(@space_5_params[:accessible_entrance])
+    
+    expect(space).to have_key(:id)
+
+    expect(space).to have_key(:type)
+    expect(space[:type]).to be_a(String)
+    expect(space[:type]).to eq("third_space")
+
+    expect(space).to have_key(:attributes)
+    expect(space[:attributes]).to be_an(Hash)
+
+    expect(space[:attributes]).to have_key(:yelp_id)
+    expect(space[:attributes][:yelp_id]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:name)
+    expect(space[:attributes][:name]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:address)
+    expect(space[:attributes][:address]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:rating)
+    expect(space[:attributes][:rating]).to be_a(Float)
+
+    expect(space[:attributes]).to have_key(:phone)
+    expect(space[:attributes][:phone]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:photos)
+    expect(space[:attributes][:photos]).to be_a(Array)
+
+    expect(space[:attributes]).to have_key(:lat)
+    expect(space[:attributes][:lat]).to be_a(Float)
+
+    expect(space[:attributes]).to have_key(:lon)
+    expect(space[:attributes][:lon]).to be_a(Float)
+
+    expect(space[:attributes]).to have_key(:price)
+    expect(space[:attributes][:price]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:hours)
+    expect(space[:attributes][:hours]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:category)
+    expect(space[:attributes][:category]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:open_now)
+    expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)  
   end
 
   it "sends a list of third places when a place contains multiple tags" do
@@ -141,8 +186,68 @@ describe "Third Places SEARCH API Endpoint" do
     expect(response.status).to eq(200)
 
     third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
-    space = third_spaces.first
-    # binding.pry
+
     expect(third_spaces.count).to eq(4)
+
+    third_spaces.each do |space|
+      expect(space).to have_key(:id)
+
+      expect(space).to have_key(:type)
+      expect(space[:type]).to be_a(String)
+      expect(space[:type]).to eq("third_space")
+
+      expect(space).to have_key(:attributes)
+      expect(space[:attributes]).to be_an(Hash)
+
+      expect(space[:attributes]).to have_key(:yelp_id)
+      expect(space[:attributes][:yelp_id]).to be_a(String)
+
+      expect(space[:attributes]).to have_key(:name)
+      expect(space[:attributes][:name]).to be_a(String)
+
+      expect(space[:attributes]).to have_key(:address)
+      expect(space[:attributes][:address]).to be_a(String)
+
+      expect(space[:attributes]).to have_key(:rating)
+      expect(space[:attributes][:rating]).to be_a(Float)
+
+      expect(space[:attributes]).to have_key(:phone)
+      expect(space[:attributes][:phone]).to be_a(String)
+
+      expect(space[:attributes]).to have_key(:photos)
+      expect(space[:attributes][:photos]).to be_a(Array)
+
+      expect(space[:attributes]).to have_key(:lat)
+      expect(space[:attributes][:lat]).to be_a(Float)
+
+      expect(space[:attributes]).to have_key(:lon)
+      expect(space[:attributes][:lon]).to be_a(Float)
+
+      expect(space[:attributes]).to have_key(:price)
+      expect(space[:attributes][:price]).to be_a(String)
+
+      expect(space[:attributes]).to have_key(:hours)
+      expect(space[:attributes][:hours]).to be_a(String)
+
+      expect(space[:attributes]).to have_key(:category)
+      expect(space[:attributes][:category]).to be_a(String)
+
+      expect(space[:attributes]).to have_key(:open_now)
+      expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
+    end
+  end
+
+  it "sends a list of third places when a place contains multiple tags" do
+    search_params = ({public_transportation_nearby: "no",
+              bipoc_friendly: "yes"
+              })
+    get '/api/v1/third_spaces/search', params: search_params
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(third_spaces.count).to eq(6)
   end
 end
