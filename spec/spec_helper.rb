@@ -4,6 +4,8 @@
 # this file to always be loaded, without a need to explicitly require it in any
 # files.
 #
+
+
 def space_search_data
   json_response = File.read('spec/fixtures/five_watt_search.json')
 
@@ -27,6 +29,8 @@ def space_search_data
   @data = @response_body[:data]
   @result = @data.first
 end
+
+
 # Given that it is always loaded, you are encouraged to keep this file as
 # light-weight as possible. Requiring heavyweight dependencies from this file
 # will add to the boot time of your test suite on EVERY test run, even for an
@@ -38,6 +42,13 @@ end
 require 'webmock/rspec'
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  config.before(:each) do
+    Bullet.start_request
+  end
+  
+  config.after(:each) do
+    Bullet.end_request
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
@@ -115,4 +126,5 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
 end
