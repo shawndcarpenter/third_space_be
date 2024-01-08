@@ -17,6 +17,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :user_third_spaces, only: [:create]
+      
+      delete "/user_third_spaces", to: "user_third_spaces#destroy"
+
+      resources :users do
+        resources :third_spaces, only: [:index], :controller=>:user_third_spaces
+      end
+
       resources :third_spaces do
         collection do
           get :create_third_space
