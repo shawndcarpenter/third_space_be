@@ -64,7 +64,79 @@ class Api::V1::ThirdSpacesController < ApplicationController
     end
   end
 
+  def search
+    find_matching_third_spaces(params)
+  end
+
   private
+  def find_matching_third_spaces(params)
+    search_results = []
+    Marker.all.each do |marker|
+      if (marker.tags.include?(params[:tags]) || !params[:tags]) &&
+          (marker.volume.include?(params[:volume]) || !params[:volume]) &&
+          (marker.gender_neutral_restrooms.include?(params[:gender_neutral_restrooms]) || !params[:gender_neutral_restrooms]) &&
+          (marker.accessible_entrance.include?(params[:accessible_entrance]) || !params[:accessible_entrance]) &&
+          (marker.customer_restrooms.include?(params[:customer_restrooms]) || !params[:customer_restrooms]) &&
+          (marker.parking.include?(params[:parking]) || !params[:parking]) &&
+          (marker.purchase_necessary.include?(params[:purchase_necessary]) || !params[:purchase_necessary]) &&
+          (marker.sober.include?(params[:sober]) || !params[:sober]) &&
+          (marker.child_friendly.include?(params[:child_friendly]) || !params[:child_friendly]) &&
+          (marker.light_level.include?(params[:light_level]) || !params[:light_level]) &&
+          (marker.public_transportation_nearby.include?(params[:public_transportation_nearby]) || !params[:public_transportation_nearby]) &&
+          (marker.bipoc_friendly.include?(params[:bipoc_friendly]) || !params[:bipoc_friendly]) &&
+          (marker.queer_friendly.include?(params[:queer_friendly]) || !params[:queer_friendly]) &&
+          (marker.staff_responsiveness.include?(params[:staff_responsiveness]) || !params[:staff_responsiveness])
+          search_results << marker 
+      end 
+    end
+    #   elsif params.include?(volume)
+
+    # end
+    # params.each do |key, value|
+    #   case key
+    #   when "tags"
+    #     # search_results = Marker.where(tags: ["#{value}"])
+    #     # search_results = Marker.where('tags.first ILIKE ?' "%#{value}")
+    #   else
+    #     search_results.each do |marker|
+    #       if !marker.(key).include?(value)
+    #         search_results.delete(marker)
+    #       end
+    #     end
+    #   end
+
+      #   # search_results = search_results.where(volume: ["#{value}"])
+      # elsif key == "accessible_entrance"
+      #   # search_results = search_results.where(accessible_entrance: ["#{value}"])
+      # elsif key == "customer_restrooms"
+      #   # search_results = search_results.where(customer_restrooms: ["#{value}"])
+      # elsif key == "parking"
+      #   # search_results = search_results.where(parking: ["#{value}"])
+      # elsif key == "purchase_necessary"
+      #   # search_results = search_results.where(purchase_necessary: ["#{value}"])
+      # elsif key == "sober"
+      #   # search_results = search_results.where(sober: ["#{value}"])
+      # elsif key == "child_friendly"
+      #   # search_results = search_results.where(child_friendly: ["#{value}"])
+      # elsif key == "light_level"
+      #   # search_results = search_results.where(light_level: ["#{value}"])
+      # elsif key == "public_transportation_nearby"
+      #   # search_results = search_results.where(public_transportation_nearby: ["#{value}"])
+      # elsif key == "bipoc_friendly"
+      #   # search_results = search_results.where(bipoc_friendly: ["#{value}"])
+      # elsif key == "queer_friendly"
+      #   # search_results = search_results.where(queer_friendly: ["#{value}"])
+      # elsif key == "staff_responsiveness"
+      #   # search_results = search_results.where(staff_responsiveness: ["#{value}"])
+      # end
+    # end
+    third_spaces = search_results.pluck(:third_space_id).map do |result|
+      ThirdSpace.find(result)
+    end
+
+    render json: ThirdSpaceSerializer.new(third_spaces), status: 200
+  end
+
   def update_all(marker, params)
     marker.update!(tags: ([marker[:tags]] + params[:tags]).flatten.reject(&:blank?))
     marker.update!(gender_neutral_restrooms: ([marker[:gender_neutral_restrooms]] + [params[:gender_neutral_restrooms]]).flatten.reject(&:blank?))
