@@ -99,6 +99,27 @@ describe "Get Third Places API Endpoint" do
     expect(user_space[:attributes][:open_now]).to eq(space.open_now)
   end
 
+  it "will not create a user third_space if it already exists" do
+    user = User.create!
+    user.third_spaces = create_list(:third_space, 1)
+    third_space = user.third_spaces.first
+
+    expect(user.third_spaces).to include(third_space)
+    user_third_space_params =  {
+      user_id: user.id,
+      third_space_id: third_space.id
+    }
+    post "/api/v1/user_third_spaces", headers: headers, params: user_third_space_params
+    expect(response).to_not be_successful
+    expect(response.status).to eq(422)
+    expect(UserThirdSpace.all.length).to eq(1)
+    
+    data = JSON.parse(response.body, symbolize_names: true)
+
+    expect(data[:errors]).to be_a(Array)
+    expect(data[:errors].first[:detail]).to eq("Validation failed: user third_space association between user with user_id=#{user.id} and third_space_id=#{third_space.id} already exists")
+  end
+
   it "can remove a third space from user saved third spaces" do
     user = User.create!
     user.third_spaces = create_list(:third_space, 5)
@@ -119,5 +140,31 @@ describe "Get Third Places API Endpoint" do
     expect(response).to be_successful
     expect(response.status).to eq(204)
     expect(UserThirdSpace.all.length).to eq(5)
+  end
+
+  describe "destroy sad paths" do
+    it "must have a valid user and valid third_space id" do
+      user = User.create!
+      user2 = User.create!
+      user.third_spaces = create_list(:third_space, 5)
+      user2.third_spaces = create_list(:third_space, 2)
+      third_space = user2.third_spaces.first
+
+      body = {
+        user_id: user.id, 
+        third_space_id: third_space.id 
+      }
+      headers = {"CONTENT_TYPE" => "application/json"}
+      delete "/api/v1/user_third_spaces", headers: headers, params: JSON.generate(body)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+      expect(UserThirdSpace.all.length).to eq(7)
+
+      data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(data[:errors]).to be_a(Array)
+      expect(data[:errors].first[:detail]).to eq("No user_third_space with user_id=#{user.id} AND third_space_id=#{third_space.id} exists")
+    end
   end
 end
