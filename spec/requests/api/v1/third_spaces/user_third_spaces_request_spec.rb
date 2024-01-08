@@ -98,4 +98,26 @@ describe "Get Third Places API Endpoint" do
     expect(user_space[:attributes][:category]).to eq(space.category)
     expect(user_space[:attributes][:open_now]).to eq(space.open_now)
   end
+
+  it "can remove a third space from user saved third spaces" do
+    user = User.create!
+    user.third_spaces = create_list(:third_space, 5)
+    third_space = create(:third_space)
+
+    expect(user.third_spaces).to_not include(third_space)
+    user_third_space_params =  {
+      user_id: user.id,
+      third_space_id: third_space.id
+    }
+
+    post "/api/v1/user_third_spaces", params: user_third_space_params
+    
+    expect(UserThirdSpace.all.length).to eq(6)
+
+    delete "/api/v1/user_third_spaces", params: user_third_space_params
+    
+    expect(response).to be_successful
+    expect(response.status).to eq(204)
+    expect(UserThirdSpace.all.length).to eq(5)
+  end
 end
