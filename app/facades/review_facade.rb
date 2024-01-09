@@ -9,8 +9,7 @@ class ReviewFacade
     json = service.find_reviews(@yelp_id)
     unless json[:error]
       @reviews = json[:reviews].map do |review|
-        # binding.pry
-        Review.new(review)
+        Review.new(review, @yelp_id)
       end
     end
   end
