@@ -17,6 +17,11 @@ class Api::V1::LocationsController < ApplicationController
     end
   end
 
+  def reviews
+    reviews = ReviewFacade.new(params[:id]).reviews
+    render json: ReviewSerializer.new(reviews)
+  end
+
   private
   def search_params
     params.permit(:name, :city, :id)

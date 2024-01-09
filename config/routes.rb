@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :user_third_spaces, only: [:create]
-      
+      get "/locations/:id/reviews", to: "locations#reviews"
+
       delete "/user_third_spaces", to: "user_third_spaces#destroy"
 
       resources :users do
