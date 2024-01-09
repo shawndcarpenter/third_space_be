@@ -105,7 +105,7 @@ describe "Third Places SEARCH API Endpoint" do
     expect(response.status).to eq(200)
 
     third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
-    # binding.pry
+
     expect(third_spaces.count).to eq(2)
 
     third_spaces.each do |space|
@@ -154,5 +154,16 @@ describe "Third Places SEARCH API Endpoint" do
       expect(space[:attributes]).to have_key(:open_now)
       expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
     end
+  end
+
+  it "will return an empty array when no spaces found" do
+    get '/api/v1/third_spaces/search?', params: ({tags: ["annoying"]})
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(third_spaces.count).to eq(0)
   end
 end
