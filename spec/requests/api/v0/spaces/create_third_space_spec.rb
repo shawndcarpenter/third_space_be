@@ -32,7 +32,7 @@ RSpec.describe "Create a Third Space", type: :request do
       data = response_body[:data]
 
       expect(data.length).to eq(3)
-      binding.pry
+      # binding.pry
       expect(data[:id]).to eq("5")
 
       result = data[:attributes]
@@ -75,5 +75,4 @@ RSpec.describe "Create a Third Space", type: :request do
       expect(result[:open_now]).to eq(false)
     end
   end
-
 end
