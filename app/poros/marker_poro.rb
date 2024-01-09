@@ -1,4 +1,4 @@
-class ThirdSpacePoro
+class MarkerPoro
   attr_reader :id,
               :gender_neutral_restrooms, 
               :volume, 
