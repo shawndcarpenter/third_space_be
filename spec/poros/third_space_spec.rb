@@ -126,7 +126,7 @@ RSpec.describe ThirdSpace do
     expect(search.photos).to be_a(Array)
     expect(search.price).to be_a(String)
     expect(search.rating).to be_a(Float)
-    expect(search.tags).to eq([])
+    expect(search.tags).to eq(nil)
     expect(search.yelp_id).to be_a(String)
   end
 end

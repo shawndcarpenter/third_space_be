@@ -10,105 +10,27 @@ describe "Third Places SEARCH API Endpoint" do
     @space_6 = create(:third_space)
 
     @space_1_params = ({
-      tags: ["happy"],
-      volume: ["quiet"], 
-      accessible_entrance: ["no"], 
-      customer_restrooms: ["no"], 
-      parking: ["yes"], 
-      purchase_necessary: ["yes"], 
-      sober: ["no"], 
-      child_friendly: ["yes"], 
-      light_level: ["low"], 
-      public_transportation_nearby: ["no"], 
-      bipoc_friendly: ["yes"], 
-      queer_friendly: ["yes"], 
-      staff_responsiveness: ["pushy"],
-      gender_neutral_restrooms: ["no"]
+      tags: ["happy"]
     })
 
     @space_2_params = ({
-      tags: ["studious"],
-      volume: ["loud"], 
-      accessible_entrance: ["no"], 
-      customer_restrooms: ["no"], 
-      parking: ["yes"], 
-      purchase_necessary: ["yes"], 
-      sober: ["no"], 
-      child_friendly: ["yes"], 
-      light_level: ["low"], 
-      public_transportation_nearby: ["no"], 
-      bipoc_friendly: ["yes"], 
-      queer_friendly: ["yes"], 
-      staff_responsiveness: ["pushy"],
-      gender_neutral_restrooms: ["no"]
+      tags: ["studious"]
     })
 
     @space_3_params = ({
-      tags: ["studious"],
-      volume: ["loud"], 
-      accessible_entrance: ["no"], 
-      customer_restrooms: ["no"], 
-      parking: ["yes"], 
-      purchase_necessary: ["yes"], 
-      sober: ["no"], 
-      child_friendly: ["yes"], 
-      light_level: ["low"], 
-      public_transportation_nearby: ["no"], 
-      bipoc_friendly: ["yes"], 
-      queer_friendly: ["yes"], 
-      staff_responsiveness: ["pushy"],
-      gender_neutral_restrooms: ["no"]
+      tags: ["studious"]
     })
 
     @space_4_params = ({
-      tags: ["studious"],
-      volume: ["quiet"], 
-      accessible_entrance: ["no"], 
-      customer_restrooms: ["no"], 
-      parking: ["yes"], 
-      purchase_necessary: ["yes"], 
-      sober: ["no"], 
-      child_friendly: ["yes"], 
-      light_level: ["low"], 
-      public_transportation_nearby: ["no"], 
-      bipoc_friendly: ["yes"], 
-      queer_friendly: ["yes"], 
-      staff_responsiveness: ["pushy"],
-      gender_neutral_restrooms: ["no"]
+      tags: ["studious"]
     })
 
     @space_5_params = ({
-      tags: ["happy"],
-      volume: ["loud"], 
-      accessible_entrance: ["no"], 
-      customer_restrooms: ["no"], 
-      parking: ["yes"], 
-      purchase_necessary: ["yes"], 
-      sober: ["no"], 
-      child_friendly: ["yes"], 
-      light_level: ["low"], 
-      public_transportation_nearby: ["no"], 
-      bipoc_friendly: ["yes"], 
-      queer_friendly: ["yes"], 
-      staff_responsiveness: ["pushy"],
-      gender_neutral_restrooms: ["no"]
+      tags: ["happy"]
     })
 
     @space_6_params = ({
-      tags: ["happy", "studious", "studious", "studious", "studious", "studious"],
-      volume: ["quiet"], 
-      accessible_entrance: ["no"], 
-      customer_restrooms: ["no"], 
-      parking: ["yes"], 
-      purchase_necessary: ["yes"], 
-      sober: ["no"], 
-      child_friendly: ["yes"], 
-      light_level: ["low"], 
-      public_transportation_nearby: ["no"], 
-      bipoc_friendly: ["yes"], 
-      queer_friendly: ["yes"], 
-      staff_responsiveness: ["pushy"],
-      gender_neutral_restrooms: ["no"]
+      tags: ["happy", "studious", "studious", "studious", "studious", "studious"]
     })
 
     patch "/api/v1/third_spaces/#{@space_1.id}", params: @space_1_params
@@ -120,7 +42,7 @@ describe "Third Places SEARCH API Endpoint" do
   end
 
   it "sends a list of third places matching criteria" do
-    get '/api/v1/third_spaces/search?tags=happy&volume=loud'
+    get '/api/v1/third_spaces/search', params: ({tags: ["happy"]})
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
@@ -128,10 +50,7 @@ describe "Third Places SEARCH API Endpoint" do
     third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
     space = third_spaces.first
     # binding.pry
-    expect(third_spaces.count).to eq(1)
-    expect(space[:attributes][:markers][0][:tags]).to eq(@space_5_params[:tags])
-    expect(space[:attributes][:markers][0][:volume]).to eq(@space_5_params[:volume])
-    expect(space[:attributes][:markers][0][:accessible_entrance]).to eq(@space_5_params[:accessible_entrance])
+    expect(third_spaces.count).to eq(3)
     
     expect(space).to have_key(:id)
 
@@ -180,14 +99,14 @@ describe "Third Places SEARCH API Endpoint" do
   end
 
   it "sends a list of third places when a place contains multiple tags" do
-    get '/api/v1/third_spaces/search?tags=studious'
+    get '/api/v1/third_spaces/search?', params: ({tags: ["studious", "happy"]})
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
 
     third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
 
-    expect(third_spaces.count).to eq(4)
+    expect(third_spaces.count).to eq(2)
 
     third_spaces.each do |space|
       expect(space).to have_key(:id)
@@ -237,17 +156,14 @@ describe "Third Places SEARCH API Endpoint" do
     end
   end
 
-  it "sends a list of third places when a place contains multiple tags" do
-    search_params = ({public_transportation_nearby: "no",
-              bipoc_friendly: "yes"
-              })
-    get '/api/v1/third_spaces/search', params: search_params
+  it "will return an empty array when no spaces found" do
+    get '/api/v1/third_spaces/search?', params: ({tags: ["annoying"]})
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
 
     third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
 
-    expect(third_spaces.count).to eq(6)
+    expect(third_spaces.count).to eq(0)
   end
 end

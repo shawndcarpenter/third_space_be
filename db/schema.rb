@@ -10,30 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_07_193350) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_09_183832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "markers", force: :cascade do |t|
-    t.string "gender_neutral_restrooms", default: [], array: true
-    t.string "volume", default: [], array: true
-    t.string "accessible_entrance", default: [], array: true
-    t.string "customer_restrooms", default: [], array: true
-    t.string "parking", default: [], array: true
-    t.string "purchase_necessary", default: [], array: true
-    t.string "sober", default: [], array: true
-    t.string "child_friendly", default: [], array: true
-    t.string "light_level", default: [], array: true
-    t.string "public_transportation_nearby", default: [], array: true
-    t.string "bipoc_friendly", default: [], array: true
-    t.string "queer_friendly", default: [], array: true
-    t.string "staff_responsiveness", default: [], array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "third_space_id"
-    t.string "tags", default: [], array: true
-    t.index ["third_space_id"], name: "index_markers_on_third_space_id"
-  end
 
   create_table "search_params", force: :cascade do |t|
     t.string "name"
@@ -57,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_193350) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tags", default: [], array: true
   end
 
   create_table "user_third_spaces", force: :cascade do |t|
