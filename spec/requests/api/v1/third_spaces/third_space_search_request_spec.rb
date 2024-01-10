@@ -166,4 +166,63 @@ describe "Third Places SEARCH API Endpoint" do
 
     expect(third_spaces.count).to eq(0)
   end
+
+  it "will return third spaces matching names" do
+    get '/api/v1/third_spaces/search_by_name?', params: ({name: @space_1.name})
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    expect(third_spaces.count).to eq(1)
+    space = third_spaces.first
+    expect(space).to have_key(:id)
+
+    expect(space).to have_key(:type)
+    expect(space[:type]).to be_a(String)
+    expect(space[:type]).to eq("third_space")
+
+    expect(space).to have_key(:attributes)
+    expect(space[:attributes]).to be_an(Hash)
+
+    expect(space[:attributes]).to have_key(:yelp_id)
+    expect(space[:attributes][:yelp_id]).to be_a(String)
+    expect(space[:attributes][:yelp_id]).to eq(@space_1.yelp_id)
+
+    expect(space[:attributes]).to have_key(:name)
+    expect(space[:attributes][:name]).to be_a(String)
+    expect(space[:attributes][:name]).to eq(@space_1.name)
+
+    expect(space[:attributes]).to have_key(:address)
+    expect(space[:attributes][:address]).to be_a(String)
+    expect(space[:attributes][:address]).to eq(@space_1.address)
+
+    expect(space[:attributes]).to have_key(:rating)
+    expect(space[:attributes][:rating]).to be_a(Float)
+
+    expect(space[:attributes]).to have_key(:phone)
+    expect(space[:attributes][:phone]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:photos)
+    expect(space[:attributes][:photos]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:lat)
+    expect(space[:attributes][:lat]).to be_a(Float)
+
+    expect(space[:attributes]).to have_key(:lon)
+    expect(space[:attributes][:lon]).to be_a(Float)
+
+    expect(space[:attributes]).to have_key(:price)
+    expect(space[:attributes][:price]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:hours)
+    expect(space[:attributes][:hours]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:category)
+    expect(space[:attributes][:category]).to be_a(String)
+
+    expect(space[:attributes]).to have_key(:open_now)
+    expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)  
+  end
 end
