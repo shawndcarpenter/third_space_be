@@ -12,6 +12,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
   
   def create
     third_space = ThirdSpace.create(space_params)
+    binding.pry
     
     render json: ThirdSpaceSerializer.new(third_space), status: 201
   end
