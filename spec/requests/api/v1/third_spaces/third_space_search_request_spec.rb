@@ -77,7 +77,7 @@ describe "Third Places SEARCH API Endpoint" do
     expect(space[:attributes][:phone]).to be_a(String)
 
     expect(space[:attributes]).to have_key(:photos)
-    expect(space[:attributes][:photos]).to be_a(Array)
+    expect(space[:attributes][:photos]).to be_a(String)
 
     expect(space[:attributes]).to have_key(:lat)
     expect(space[:attributes][:lat]).to be_a(Float)
@@ -134,7 +134,7 @@ describe "Third Places SEARCH API Endpoint" do
       expect(space[:attributes][:phone]).to be_a(String)
 
       expect(space[:attributes]).to have_key(:photos)
-      expect(space[:attributes][:photos]).to be_a(Array)
+      expect(space[:attributes][:photos]).to be_a(String)
 
       expect(space[:attributes]).to have_key(:lat)
       expect(space[:attributes][:lat]).to be_a(Float)
