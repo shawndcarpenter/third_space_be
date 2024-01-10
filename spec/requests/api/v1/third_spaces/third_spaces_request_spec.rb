@@ -118,20 +118,24 @@ describe "Third Places API Endpoint" do
   end
 
   it "can create a new third space" do
+    json_tags = JSON.generate(['happy', 'studious'])
+    json_photos = JSON.generate([])
+    json_hours = JSON.generate("Olive Hoyl")
+
     space_params = ({ id: 126,
                     yelp_id: "Juana Bea",
                     name: "Barton Inc",
                     address: "8761 DuBuque Lights",
                     rating: 37.47,
                     phone: "7842541779",
-                    photos: [],
+                    photos: json_photos,
                     lat: 10.08,
                     lon: 79.34,
                     price: "FT\u{63F19}",
-                    hours: "Olive Hoyl",
+                    hours: json_hours,
                     open_now: false,
                     category: "German",
-                    tags: ["happy", "studious"]})
+                    tags: json_tags})
      
     expect(ThirdSpace.all.length).to eq(0)
 
@@ -150,9 +154,11 @@ describe "Third Places API Endpoint" do
     expect(space.lat).to eq(space_params[:lat])
     expect(space.lon).to eq(space_params[:lon])
     expect(space.price).to eq(space_params[:price])
-    expect(space.hours).to eq(space_params[:hours])
+    expect(space.hours).to eq("Olive Hoyl")
     expect(space.open_now).to eq(space_params[:open_now])
     expect(space.category).to eq(space_params[:category])
+    expect(space.tags).to eq(['happy', 'studious'])
+    expect(space.photos).to eq("[]")
   end
 
   context "#update" do
@@ -196,20 +202,24 @@ describe "Third Places API Endpoint" do
     end
 
     it "can delete a new third space" do
+      json_tags = JSON.generate(['happy', 'studious'])
+      json_photos = JSON.generate([])
+      json_hours = JSON.generate("Olive Hoyl")
+  
       space_params = ({ id: 126,
                       yelp_id: "Juana Bea",
                       name: "Barton Inc",
                       address: "8761 DuBuque Lights",
                       rating: 37.47,
                       phone: "7842541779",
-                      photos: [],
+                      photos: json_photos,
                       lat: 10.08,
                       lon: 79.34,
                       price: "FT\u{63F19}",
-                      hours: "Olive Hoyl",
+                      hours: json_hours,
                       open_now: false,
                       category: "German",
-                      tags: ["happy", "studious"]})
+                      tags: json_tags})
   
       post api_v1_third_spaces_path, params: space_params
       expect(ThirdSpace.all.count).to eq(6)
