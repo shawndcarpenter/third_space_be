@@ -94,7 +94,230 @@ The back end handles API calls to the Yelp API as well as accepts post requests 
 
 Both front end and back end use the [Pry gem](https://github.com/pry/pry) and [RSpec Rails](https://github.com/rspec/rspec-rails) within the testing environment for unit and feature testing.
 
-## Staff
+# How to Use the API
+The possible requests are divided into locations, which are taken from the Yelp API, and Third Spaces, which are provided to the front end from this application.
+
+## Locations
+### GET Locations
+Locations will receive the following input:
+```sh
+GET "/api/v1/locations/search_locations",
+params = ({name: "Business Name",
+          city: "Business City"
+                })
+```
+And Return the following output to the front end application:
+```sh
+{:data=>
+  [{:id=>"location_id",
+    :type=>"search_result",
+    :attributes=>
+     {:id=>"location_id", :name=>"Location Name", :address=>"Location Address", :category=>"Location Category"}},
+   {:id=>"location_id",
+    :type=>"search_result", ...
+```
+
+### GET One Detailed Location
+Locations will receive the following input:
+```sh
+GET "/api/v1/locations/:id"
+```
+And Return the following output to the front end application:
+```sh
+ {:id=>id,
+   :type=>"detailed_location",
+   :attributes=>
+    {:yelp_id=>"yelp_id",
+     :name=>"Business Name",
+     :address=>"1234 Business Ave S, Minneapolis, MN 12345",
+     :rating=>4.5,
+     :phone=>"(555) 123-4567",
+     :photos=>
+      ["photopath.jpg",
+       "photopath2.jpg"],
+     :lat=>float,
+     :lon=>float,
+     :price=>"$$",
+     :hours=>
+      [{:open=>
+         [{:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>0},
+          {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>1},
+          {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>2},
+          {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>3},
+          {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>4},
+          {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>5},
+          {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>6}],
+        :hours_type=>"REGULAR",
+        :is_open_now=>true}],
+     :category=>"category",
+     :open_now=>true}}}
+```
+
+### GET Reviews For A Location
+Locations will receive the following input:
+```sh
+GET "/api/v1/locations/:id/reviews"
+```
+And Return the following output to the front end application:
+```sh
+{:data=>
+  [{:id=>"id",
+    :type=>"review",
+    :attributes=>
+     {:id=>"id",
+      :rating=>5,
+      :text=>
+       "Some of the best coffee and tea around. They usually have some great breakfast snacks to offer...",
+      :name=>"Jeremy S.",
+      :yelp_id=>"id"}},
+   {:id=>"id", ...
+```
+
+## Third Spaces
+### GET One Third Space
+Third Spaces will receive the following input:
+```sh
+GET "/api/v1/locations/5pWHnKN3_AIrXiyyqZ74pw"
+```
+And Return the following output to the front end application:
+```sh
+{:id=>"3975",
+ :type=>"third_space",
+ :attributes=>
+  {:yelp_id=>"NmS9OJcWvt2b0T5HBhevyA",
+   :name=>"Flagstaff House Restaurant",
+   :address=>"1138 Flagstaff Rd, Boulder, CO 80302",
+   :rating=>4.0,
+   :phone=>"(303) 442-4640",
+   :photos=>nil,
+   :lat=>40.00726560834577,
+   :lon=>-105.29451806098224,
+   :price=>"$$$$",
+   :hours=>nil,
+   :category=>"French",
+   :open_now=>nil,
+   :tags=>
+    ["happy",
+     "studious"] }}
+```
+
+### GET All Third Spaces
+Third Spaces will receive the following input:
+```sh
+ get '/api/v1/third_spaces'
+```
+And Return the following output to the front end application:
+```sh
+[{:id=>"id",
+  :type=>"third_space",
+  :attributes=>
+   {:yelp_id=>"yelp_id",
+    :name=>"Name",
+    :address=>"1400 Address St, Business, CO 12345",
+    :rating=>4.0,
+    :phone=>"(555) 123-4567",
+    :photos=>nil,
+    :lat=>float,
+    :lon=>float,
+    :price=>"$$",
+    :hours=>nil,
+    :category=>"New American",
+    :open_now=>nil,
+    :tags=>nil}},
+ {:id=>"id2",
+  :type=>"third_space", ...
+```
+
+### Create A Third Space
+Third Spaces will receive the following input:
+```sh
+POST '/api/v1/third_spaces', ({ id: id,
+                    yelp_id: yelp_id,
+                    name: name,
+                    address: address,
+                    rating: rating,
+                    phone: phone,
+                    photos: [],
+                    lat: float,
+                    lon: float,
+                    price: $$,
+                    hours: hours,
+                    open_now: false,
+                    category: "German",
+                    tags: ["happy", "studious"]})
+```
+And Return the following output to the front end application:
+```sh
+({ id: id,
+                    yelp_id: yelp_id,
+                    name: name,
+                    address: address,
+                    rating: rating,
+                    phone: phone,
+                    photos: [],
+                    lat: float,
+                    lon: float,
+                    price: $$,
+                    hours: hours,
+                    open_now: false,
+                    category: "German",
+                    tags: ["happy", "studious"]})
+```
+
+### Delete A Third Space
+Third Spaces will receive the following input:
+```sh
+
+```
+And Return the following output to the front end application:
+```sh
+
+```
+
+### Update A Third Space
+Third Spaces will receive the following input:
+```sh
+
+```
+And Return the following output to the front end application:
+```sh
+
+```
+
+### POST A Third Space To User Saved Third Spaces
+Third Spaces will receive the following input:
+```sh
+
+```
+And Return the following output to the front end application:
+```sh
+
+```
+
+### DELETE A Third Space From User Saved Third Spaces
+Third Spaces will receive the following input:
+```sh
+
+```
+And Return the following output to the front end application:
+```sh
+
+```
+
+### SEARCH For A Third Space From User Saved Third Spaces
+Third Spaces will receive the following input:
+```sh
+
+```
+And Return the following output to the front end application:
+```sh
+
+```
+
+
+
+
+# Staff
 
 Main Support Email: thirdspace2308@gmail.com
 
