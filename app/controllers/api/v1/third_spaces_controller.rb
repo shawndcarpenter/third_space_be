@@ -44,6 +44,11 @@ class Api::V1::ThirdSpacesController < ApplicationController
     find_matching_third_spaces(params)
   end
 
+  def search_by_name
+    third_spaces = ThirdSpace.where("name ilike ?", "%#{params[:name]}%")
+    render json: ThirdSpaceSerializer.new(third_spaces)
+  end
+
   private
   def find_matching_third_spaces(params)
     search_results = []
