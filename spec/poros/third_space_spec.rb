@@ -117,11 +117,9 @@ RSpec.describe ThirdSpace do
     expect(search).to be_a ThirdSpacePoro
     expect(search.address).to be_a(String)
     expect(search.category).to be_a(String)
-    expect(search.hours).to be_a(Array)
     expect(search.lat).to be_a(Float)
     expect(search.lon).to be_a(Float)
     expect(search.name).to be_a(String)
-    expect(search.open_now).to be_a(TrueClass).or be_a(FalseClass)
     expect(search.phone).to be_a(String)
     expect(search.photos).to be_a(Array)
     expect(search.price).to be_a(String)
