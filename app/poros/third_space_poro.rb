@@ -9,10 +9,8 @@ class ThirdSpacePoro
               :lat, 
               :lon, 
               :price, 
-              :hours, 
               :category, 
-              :tags, 
-              :open_now
+              :tags
 
   def initialize(data)
     @yelp_id = data[:id]
@@ -20,26 +18,35 @@ class ThirdSpacePoro
     @address = data[:location][:display_address].join(", ")
     @rating = data[:rating]
     @phone = data[:display_phone]
-    @photos = data[:photos]
+    @photos = find_photos(data)
     @lat = data[:coordinates][:latitude]
     @lon = data[:coordinates][:longitude]
     @price = data[:price]
-    @hours = data[:hours]
-    @open_now = data[:hours].first[:is_open_now]  #Need to Clean this Up
     @category = data[:categories].first[:title]
-    @tags = []
-    # @gender_neutral_restrooms = []
-    # @volume = []
-    # @accessible_entrance = []
-    # @customer_restrooms = []
-    # @parking = []
-    # @purchase_necessary = []
-    # @sober = []
-    # @child_friendly = []
-    # @light_level = []
-    # @public_transportation_nearby = []
-    # @bipoc_friendly = []
-    # @queer_friendly = []
-    # @staff_responsiveness = []
+    @tags = tags
+  end
+
+  def find_photos(data)
+    if data[:photos]
+      data[:photos]
+    else
+      data[:image_url]
+    end
+  end
+
+  def make_third_space
+    ThirdSpace.create!({
+    yelp_id: @yelp_id, 
+    name: @name, 
+    address: @address, 
+    rating: @rating, 
+    phone: @phone, 
+    photos: @photos, 
+    lat: @lat, 
+    lon: @lon, 
+    price: @price, 
+    category: @category, 
+    tags: @tags
+       })
   end
 end
