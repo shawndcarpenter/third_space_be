@@ -25,10 +25,26 @@ Windows:
 This product is not compatible with Windows.
 
 ## API
-XXX Add more data about API endpoints
-This application uses the Yelp API to access the locations through the back-end API calls [here](https://docs.developer.yelp.com/reference/v3_business_search).
+This application uses the Yelp API to access the locations through the back-end API calls. You can receive a free API key from Yelp [here](https://docs.developer.yelp.com/docs/fusion-intro).
 
-XXX demonstrate CRUD functionality
+### To use this API key 
+1. Enter the following in your terminal:
+```sh
+EDITOR="code --wait" rails credentials:edit
+```
+2. In the window that has opened, titled credentials.yml.enc, add the following. Make sure that key is on a new line with a tab before it.
+```sh
+yelp:
+ key: Bearer the_api_key_given_to_you
+```
+3. Close this file to save your credentials.
+### Business Search XXX
+[here](https://docs.developer.yelp.com/reference/v3_business_search).
+
+### Detailed Business XXX
+[here](https://docs.developer.yelp.com/reference/v3_business_info)
+### Business Reviews XXX
+[here](https://docs.developer.yelp.com/reference/v3_business_reviews)
 
 ## Why Use Third Space?
 
@@ -248,70 +264,183 @@ POST '/api/v1/third_spaces', ({ id: id,
 ```
 And Return the following output to the front end application:
 ```sh
-({ id: id,
-                    yelp_id: yelp_id,
-                    name: name,
-                    address: address,
-                    rating: rating,
-                    phone: phone,
-                    photos: [],
-                    lat: float,
-                    lon: float,
-                    price: $$,
-                    hours: hours,
-                    open_now: false,
-                    category: "German",
-                    tags: ["happy", "studious"]})
+{:data=>
+  {:id=>"121",
+   :type=>"third_space",
+   :attributes=>
+    {:yelp_id=>"Rhoda Mule",
+     :name=>"Wiza, Abshire and Greenfelder",
+     :address=>"42185 Baumbach Spurs",
+     :rating=>67.81,
+     :phone=>"3963015744",
+     :photos=>[],
+     :lat=>36.23,
+     :lon=>95.53,
+     :price=>"쁛棼",
+     :hours=>"Bess Twishes",
+     :category=>"Bakery",
+     :open_now=>false,
+     :tags=>["happy", "studious"]}}}
 ```
 
 ### Delete A Third Space
+A third space can be deleted by an admin. To do so, a delete request is sent to this application and the third space with the corresponding id is deleted.
+
 Third Spaces will receive the following input:
 ```sh
-
+delete "/api/v1/third_spaces/:id"
 ```
 And Return the following output to the front end application:
 ```sh
-
+{:message=>"Record successfully destroyed"}
 ```
 
 ### Update A Third Space
+A user can update any of the tags. A request is received with parameters of the tags that a user has indicated. Then, an update is made to the third space in the database and the tags now include what was sent.
+
 Third Spaces will receive the following input:
 ```sh
-
+patch "/api/v1/third_spaces/:id", params: ({
+        tags: ["happy", "studious"]
+      })
 ```
 And Return the following output to the front end application:
 ```sh
+{:data=>
+  {:id=>"121",
+   :type=>"third_space",
+   :attributes=>
+    {:yelp_id=>"Rhoda Mule",
+     :name=>"Wiza, Abshire and Greenfelder",
+     :address=>"42185 Baumbach Spurs",
+     :rating=>67.81,
+     :phone=>"3963015744",
+     :photos=>[],
+     :lat=>36.23,
+     :lon=>95.53,
+     :price=>"쁛棼",
+     :hours=>"Bess Twishes",
+     :category=>"Bakery",
+     :open_now=>false,
+     :tags=>["happy", "studious"]}}}
+```
 
+### GET Third Spaces Saved By A User
+This contains all third spaces saved by a user. UserThirdSpaces are objects within a joins table which saves the user_id and third_space_id, so that users can keep track of their favorite spaces.
+
+```sh
+get "/api/v1/users/:id/third_spaces"
+```
+And Return the following output to the front end application:
+```sh
+{:data=>
+  {:id=>"8",
+   :type=>"user",
+   :relationships=>
+    {:third_spaces=>
+      {:data=>
+        [{:id=>"163", :type=>"third_space"},
+         {:id=>"164", :type=>"third_space"},
+         {:id=>"165", :type=>"third_space"},
+         {:id=>"166", :type=>"third_space"},
+         {:id=>"167", :type=>"third_space"}]}}},
+ :included=>
+  [{:id=>"163",
+    :type=>"third_space",
+    :attributes=>
+     {:yelp_id=>"Bart Ender", ...
 ```
 
 ### POST A Third Space To User Saved Third Spaces
+When a user saves a Third Space to their saved list, it is added to a collection of UserThirdSpaces. This allows users to keep track of spaces that they enjoyed. This request takes in the user id and third space id and returns the newly-created object.
+
 Third Spaces will receive the following input:
 ```sh
-
+    post "/api/v1/user_third_spaces", params: {
+          user_id: user.id,
+          third_space_id: space.id
+          }   
 ```
 And Return the following output to the front end application:
 ```sh
-
+{:data=>
+  {:id=>"8",
+   :type=>"user",
+   :relationships=>
+    {:third_spaces=>
+      {:data=>
+        [{:id=>"163", :type=>"third_space"},
+         {:id=>"164", :type=>"third_space"},
+         {:id=>"165", :type=>"third_space"},
+         {:id=>"166", :type=>"third_space"},
+         {:id=>"167", :type=>"third_space"}]}}},
+ :included=>
+  [{:id=>"163",
+    :type=>"third_space",
+    :attributes=>
+     {:yelp_id=>"Bart Ender", ...
 ```
 
 ### DELETE A Third Space From User Saved Third Spaces
+When a user removes a Third Space from their saved list, a delete request is sent to this application. The UserThirdSpace object holding the user_id and third_space_id is deleted. If no UserThirdSpace is found, an error is returned. 
+
 Third Spaces will receive the following input:
 ```sh
+delete "/api/v1/user_third_spaces", params: {
+          user_id: user.id,
+          third_space_id: third_space.id
+          }
+```
+And Return the following output to the front end application:
+```sh
+{:data=>
+  {:id=>"8",
+   :type=>"user",
+   :relationships=>
+    {:third_spaces=>
+      {:data=>
+        [{:id=>"163", :type=>"third_space"},
+         {:id=>"164", :type=>"third_space"},
+         {:id=>"165", :type=>"third_space"},
+         {:id=>"166", :type=>"third_space"},
+         {:id=>"167", :type=>"third_space"}]}}},
+ :included=>
+  [{:id=>"163",
+    :type=>"third_space",
+    :attributes=>
+     {:yelp_id=>"Bart Ender", ...
+```
+
+### SEARCH For A Third Space
+Users are able to filter their search results based on a number of tags. These tags are sent to this application in the form of params, which are then searched for among all Third Spaces saved in the database. If no results are found, an empty array will be sent instead.
+
+Third Spaces will receive the following input:
+```sh
+get '/api/v1/third_spaces/search?', params: ({
+                  tags: ["studious", "happy"]
+                  })
 
 ```
 And Return the following output to the front end application:
 ```sh
-
-```
-
-### SEARCH For A Third Space From User Saved Third Spaces
-Third Spaces will receive the following input:
-```sh
-
-```
-And Return the following output to the front end application:
-```sh
-
+[{:id=>"185",
+  :type=>"third_space",
+  :attributes=>
+   {:yelp_id=>"Manny Kinn",
+    :name=>"Kreiger Inc",
+    :address=>"759 Marcelene Oval",
+    :rating=>35.73,
+    :phone=>"1844972127",
+    :photos=>[],
+    :lat=>33.49,
+    :lon=>30.86,
+    :price=>"$]ꦰ",
+    :hours=>"Carlotta Tendant",
+    :category=>"African",
+    :open_now=>true,
+    :tags=>["studious"]}},
+ {:id=>"188",
+  :type=>"third_space", ...
 ```
 
 
@@ -338,5 +467,3 @@ Charles Ren [Email]() [LinkedIn](https://www.linkedin.com/in/charles-ren-code/)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
-
-
