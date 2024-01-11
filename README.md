@@ -1,8 +1,5 @@
 # third_space_be
 
-XXX NEED TO ADD:
-XXX include database schema
-
 # Third Space
 > This product aims to help users find locations for leisure activities near them which fit their mood and needs.
 
@@ -95,13 +92,7 @@ The front end repository handles most of what the user will interact with, inclu
 ### Testing
 XXX check over all backend gems
 
-Our application includes extensive testing using the [Capybara gem](https://github.com/teamcapybara/capybara) to simulate user input and interaction.
-
-This application also uses the [Launchy Gem](https://github.com/copiousfreetime/launchy) to view pages in the browser without needing to start the server.
-
 The [Shoulda Matchers Gem](https://github.com/thoughtbot/shoulda-matchers) is used for one-liner testing of models.
-
-The [Orderly Gem](https://github.com/jmondo/orderly) is used to check the order in which items appear on the pages for our application.
 
 The [SimpleCov Gem](https://github.com/simplecov-ruby/simplecov) provides test coverage analysis for our application.
 
@@ -111,6 +102,8 @@ The back end handles API calls to the Yelp API as well as accepts post requests 
 
 Both front end and back end use the [Pry gem](https://github.com/pry/pry) and [RSpec Rails](https://github.com/rspec/rspec-rails) within the testing environment for unit and feature testing.
 
+# Schema
+![Photo showing that the user stores only the user id and has a many-to-many relationship with third_spaces](images/schema.png)
 # How to Use the API
 The possible requests are divided into locations, which are taken from the Yelp API, and Third Spaces, which are provided to the front end from this application.
 
