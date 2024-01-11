@@ -1,13 +1,25 @@
 class Api::V1::UserThirdSpacesController < ApplicationController
   def index
+    begin
     user = User.find(params[:user_id])
+    rescue ActiveRecord::RecordNotFound => exception
+    end
+    if user
+      render json: UserSerializer.new(user, include: ["third_spaces"])
+    else
+      # binding.pry
+      user = User.new(id: params[:user_id])
+      user.save!
 
-    render json: UserSerializer.new(user, include: ["third_spaces"])
+      render json: UserSerializer.new(user, include: ["third_spaces"])
+    end
   end
 
   def create
     params_user_id = params[:user_id]
-    params_third_space_id = params[:third_space_id]
+    third_space = ThirdSpace.where(yelp_id: params[:third_space_id]).first
+    # binding.pry
+    params_third_space_id = third_space[:id]
     user = User.find(params[:user_id]) 
 
     if UserThirdSpace.where("user_id = #{params_user_id} and third_space_id = #{params_third_space_id}") != []
@@ -25,14 +37,16 @@ class Api::V1::UserThirdSpacesController < ApplicationController
   end
 
   def destroy
-    space = ThirdSpace.find(params[:third_space_id])
-    user = User.find(params[:user_id])
-    user_third_space = UserThirdSpace.where(user_id: user.id).where(third_space_id: space.id).first
+    params_user_id = params[:user_id]
+    third_space = ThirdSpace.where(yelp_id: params[:third_space_id]).first
+    params_third_space_id = third_space[:id]
+    user = User.find(params[:user_id]) 
+    user_third_space = UserThirdSpace.where(user_id: params_user_id).where(third_space_id: params_third_space_id).first
 
     if user_third_space != nil
       render json: UserThirdSpace.delete(user_third_space.id), status: 204
     else
-      no_user_third_space_response(user.id, space.id)
+      no_user_third_space_response(params_user_id, params_third_space_id)
     end
   end
 
