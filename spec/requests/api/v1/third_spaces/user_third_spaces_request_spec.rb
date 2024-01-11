@@ -44,7 +44,7 @@ describe "Get Third Places API Endpoint" do
       expect(space[:attributes][:phone]).to be_a(String)
 
       expect(space[:attributes]).to have_key(:photos)
-      expect(space[:attributes][:photos]).to be_a(Array)
+      expect(space[:attributes][:photos]).to be_a(String)
 
       expect(space[:attributes]).to have_key(:lat)
       expect(space[:attributes][:lat]).to be_a(Float)
@@ -73,7 +73,7 @@ describe "Get Third Places API Endpoint" do
     expect(user.third_spaces).to_not include(space)
     user_third_space_params =  {
       user_id: user.id,
-      third_space_id: space.id
+      third_space_id: space.yelp_id
     }   
 
     post "/api/v1/user_third_spaces", params: user_third_space_params
@@ -107,7 +107,7 @@ describe "Get Third Places API Endpoint" do
     expect(user.third_spaces).to include(third_space)
     user_third_space_params =  {
       user_id: user.id,
-      third_space_id: third_space.id
+      third_space_id: third_space.yelp_id
     }
     post "/api/v1/user_third_spaces", headers: headers, params: user_third_space_params
     expect(response).to_not be_successful
@@ -128,7 +128,7 @@ describe "Get Third Places API Endpoint" do
     expect(user.third_spaces).to_not include(third_space)
     user_third_space_params =  {
       user_id: user.id,
-      third_space_id: third_space.id
+      third_space_id: third_space.yelp_id
     }
 
     post "/api/v1/user_third_spaces", params: user_third_space_params
@@ -152,7 +152,7 @@ describe "Get Third Places API Endpoint" do
 
       body = {
         user_id: user.id, 
-        third_space_id: third_space.id 
+        third_space_id: third_space.yelp_id 
       }
       headers = {"CONTENT_TYPE" => "application/json"}
       delete "/api/v1/user_third_spaces", headers: headers, params: JSON.generate(body)

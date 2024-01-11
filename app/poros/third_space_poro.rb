@@ -18,12 +18,20 @@ class ThirdSpacePoro
     @address = data[:location][:display_address].join(", ")
     @rating = data[:rating]
     @phone = data[:display_phone]
-    @photos = data[:photos]
+    @photos = find_photos(data)
     @lat = data[:coordinates][:latitude]
     @lon = data[:coordinates][:longitude]
     @price = data[:price]
     @category = data[:categories].first[:title]
     @tags = tags
+  end
+
+  def find_photos(data)
+    if data[:photos]
+      data[:photos]
+    else
+      data[:image_url]
+    end
   end
 
   def make_third_space

@@ -11,7 +11,14 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
   
   def create
-    third_space = ThirdSpace.create(space_params)
+    parsed_tags = JSON.parse(space_params[:tags])
+    parsed_photos = JSON.parse(space_params[:photos])
+    # parsed_hours = JSON.parse(space_params[:hours])
+
+    third_space = ThirdSpace.create!(space_params)
+    third_space.update!(tags: parsed_tags)
+    third_space.update!(photos: parsed_photos)
+    # third_space.update!(hours: parsed_hours)
     
     render json: ThirdSpaceSerializer.new(third_space), status: 201
   end
@@ -35,6 +42,11 @@ class Api::V1::ThirdSpacesController < ApplicationController
 
   def search
     find_matching_third_spaces(params)
+  end
+
+  def search_by_name
+    third_spaces = ThirdSpace.where("name ilike ?", "%#{params[:name]}%")
+    render json: ThirdSpaceSerializer.new(third_spaces)
   end
 
   private
@@ -61,7 +73,22 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
 
   def search_params
-    params.permit(:name, :city)
+    params.permit(:name, :city,                 
+    :id, 
+    :yelp_id, 
+    :name, 
+    :address, 
+    :rating, 
+    :phone, 
+    :photos, 
+    :lat, 
+    :lon, 
+    :price, 
+    :hours, 
+    :category, 
+    :tags, 
+    :open_now,
+    :third_space)
   end
 
   def space_params
@@ -79,7 +106,8 @@ class Api::V1::ThirdSpacesController < ApplicationController
                 :hours, 
                 :category, 
                 :tags, 
-                :open_now             
+                :open_now,
+                :third_space => {}
                 )
   end
 end
