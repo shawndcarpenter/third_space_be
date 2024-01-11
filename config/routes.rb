@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :user_third_spaces, only: [:create]
       get "/locations/:id/reviews", to: "locations#reviews"
+      get "/third_spaces/:id/reviews", to: "third_spaces#reviews"
+      post "/third_spaces/:id/reviews", to: "third_spaces#create_review"
 
       delete "/user_third_spaces", to: "user_third_spaces#destroy"
 

@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_10_043607) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_11_172359) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "review_objects", force: :cascade do |t|
+    t.string "yelp_id"
+    t.string "name"
+    t.string "text"
+    t.string "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "third_space_id"
+    t.index ["third_space_id"], name: "index_review_objects_on_third_space_id"
+  end
 
   create_table "search_params", force: :cascade do |t|
     t.string "name"

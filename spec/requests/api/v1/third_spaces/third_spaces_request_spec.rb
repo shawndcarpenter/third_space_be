@@ -10,7 +10,7 @@ describe "Third Places API Endpoint" do
     expect(response.status).to eq(200)
 
     third_spaces = JSON.parse(response.body, symbolize_names: true)[:data]
-    expect(third_spaces.count).to eq(155)
+    expect(third_spaces.count).to eq(5)
 
     third_spaces.each do |space|
       expect(space).to have_key(:id)
@@ -60,9 +60,10 @@ describe "Third Places API Endpoint" do
     end
   end
 
-  xit "sends a specific third place" do
+  it "sends a specific third place" do
     create_list(:third_space, 5)
     space = ThirdSpace.first
+    space.update!(yelp_id: "12345")
 
     get "/api/v1/third_spaces/#{space.yelp_id}"
 
@@ -137,7 +138,7 @@ describe "Third Places API Endpoint" do
                     category: "German",
                     tags: json_tags})
      
-    expect(ThirdSpace.all.length).to eq(150)
+    expect(ThirdSpace.all.length).to eq(0)
 
     post api_v1_third_spaces_path, params: space_params
     
@@ -233,5 +234,81 @@ describe "Third Places API Endpoint" do
       expect(ThirdSpace.all.count).to eq(5)
       expect(ThirdSpace.where(id: 126)).to be_empty
     end
+  end
+
+  it "can send reviews for a third_space" do
+    create(:third_space_with_review_objects)
+    space = ThirdSpace.last
+
+    space.update!(yelp_id: "12345")
+    space.review_objects.map do |review|
+      review.update!(yelp_id: "12345")
+    end
+
+    get "/api/v1/third_spaces/#{space.yelp_id}/reviews"
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    reviews = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    reviews.each do |review|
+      expect(review).to have_key(:id)
+      expect(review).to have_key(:type)
+      expect(review).to have_key(:attributes)
+      expect(review[:attributes]).to have_key(:id)
+      expect(review[:attributes]).to have_key(:rating)
+      expect(review[:attributes]).to have_key(:text)
+      expect(review[:attributes]).to have_key(:name)
+      expect(review[:attributes]).to have_key(:yelp_id)
+      expect(review[:attributes][:yelp_id]).to eq("12345")
+    end
+  end
+
+  it "will send empty array if no reviews available" do
+    create_list(:third_space, 5)
+    space = ThirdSpace.last
+
+    space.update!(yelp_id: "12345")
+
+    get "/api/v1/third_spaces/#{space.yelp_id}/reviews"
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    reviews = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(reviews).to eq([])
+  end
+
+  it "can create reviews" do
+    create_list(:third_space, 5)
+    space = ThirdSpace.last
+
+    space.update!(yelp_id: "12345")
+    expect(ReviewObject.where(yelp_id: "12345").length).to eq(0)
+
+    post "/api/v1/third_spaces/#{space.yelp_id}/reviews", 
+        params: ({yelp_id: space.yelp_id,
+        text: "text",
+        rating: "rating",
+        name: "name"
+        })
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    review = JSON.parse(response.body, symbolize_names: true)[:data]
+    
+    expect(review).to have_key(:id)
+    expect(review).to have_key(:type)
+    expect(review).to have_key(:attributes)
+    expect(review[:attributes]).to have_key(:id)
+    expect(review[:attributes]).to have_key(:rating)
+    expect(review[:attributes]).to have_key(:text)
+    expect(review[:attributes]).to have_key(:name)
+    expect(review[:attributes]).to have_key(:yelp_id)
+    expect(review[:attributes][:yelp_id]).to eq("12345")
+
+    expect(ReviewObject.where(yelp_id: "12345").length).to eq(1)
   end
 end
