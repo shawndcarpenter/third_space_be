@@ -154,7 +154,7 @@ describe "Third Places API Endpoint" do
     expect(space.lat).to eq(space_params[:lat])
     expect(space.lon).to eq(space_params[:lon])
     expect(space.price).to eq(space_params[:price])
-    expect(space.hours).to eq("Olive Hoyl")
+    expect(space.hours).to eq("\"Olive Hoyl\"")
     expect(space.open_now).to eq(space_params[:open_now])
     expect(space.category).to eq(space_params[:category])
     expect(space.tags).to eq(['happy', 'studious'])
