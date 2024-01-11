@@ -102,6 +102,8 @@ The back end handles API calls to the Yelp API as well as accepts post requests 
 
 Both front end and back end use the [Pry gem](https://github.com/pry/pry) and [RSpec Rails](https://github.com/rspec/rspec-rails) within the testing environment for unit and feature testing.
 
+The [Bullet gem](https://github.com/flyerhzm/bullet) is used to track N+1 queries.
+
 # Schema
 ![Photo showing that the user stores only the user id and has a many-to-many relationship with third_spaces](images/schema.png)
 # How to Use the API
