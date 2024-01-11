@@ -13,12 +13,12 @@ class Api::V1::ThirdSpacesController < ApplicationController
   def create
     parsed_tags = JSON.parse(space_params[:tags])
     parsed_photos = JSON.parse(space_params[:photos])
-    parsed_hours = JSON.parse(space_params[:hours])
+    # parsed_hours = JSON.parse(space_params[:hours])
 
     third_space = ThirdSpace.create!(space_params)
     third_space.update!(tags: parsed_tags)
     third_space.update!(photos: parsed_photos)
-    third_space.update!(hours: parsed_hours)
+    # third_space.update!(hours: parsed_hours)
     
     render json: ThirdSpaceSerializer.new(third_space), status: 201
   end
@@ -107,7 +107,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
                 :category, 
                 :tags, 
                 :open_now,
-                :third_space
+                :third_space => {}
                 )
   end
 end
