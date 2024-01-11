@@ -7,7 +7,6 @@ class Api::V1::UserThirdSpacesController < ApplicationController
     if user
       render json: UserSerializer.new(user, include: ["third_spaces"])
     else
-      # binding.pry
       user = User.new(id: params[:user_id])
       user.save!
 
@@ -18,7 +17,6 @@ class Api::V1::UserThirdSpacesController < ApplicationController
   def create
     params_user_id = params[:user_id]
     third_space = ThirdSpace.where(yelp_id: params[:third_space_id]).first
-    # binding.pry
     params_third_space_id = third_space[:id]
     user = User.find(params[:user_id]) 
 

@@ -7,7 +7,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
 
   def show
     render json: 
-    ThirdSpaceSerializer.new(ThirdSpace.find(params[:id]))
+    ThirdSpaceSerializer.new(ThirdSpace.find_by(yelp_id: params[:id]))
   end
   
   def create
