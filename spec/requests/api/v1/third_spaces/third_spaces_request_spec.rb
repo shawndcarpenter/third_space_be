@@ -166,6 +166,7 @@ describe "Third Places API Endpoint" do
     before(:each) do
       create_list(:third_space, 5)
       @space = ThirdSpace.all.first
+      @space.update!(yelp_id: "12345")
 
       @space_params = ({
         tags: ["happy", "studious"]
@@ -177,7 +178,7 @@ describe "Third Places API Endpoint" do
     end
 
     it "can update a third space with no tags" do
-      patch "/api/v1/third_spaces/#{@space.id}", params: @space_params
+      patch "/api/v1/third_spaces/12345", params: @space_params
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
@@ -187,12 +188,12 @@ describe "Third Places API Endpoint" do
     end
 
     it "can update a third space and not overwrite existing tags" do
-      patch "/api/v1/third_spaces/#{@space.id}", params: @space_params
+      patch "/api/v1/third_spaces/12345", params: @space_params
       
       expect(response).to be_successful
       expect(response.status).to eq(200)
 
-      patch "/api/v1/third_spaces/#{@space.id}", params: @more_space_params
+      patch "/api/v1/third_spaces/12345", params: @more_space_params
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
