@@ -50,7 +50,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
 
   def destroy
-    third_space = ThirdSpace.find(params[:id])
+    third_space = ThirdSpace.find_by_yelp_id(params[:id])
     if third_space
       third_space.destroy
       render json: { message: 'Record successfully destroyed' }
