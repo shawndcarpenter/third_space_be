@@ -52,8 +52,8 @@ class Api::V1::ThirdSpacesController < ApplicationController
   def destroy
     third_space = ThirdSpace.find_by_yelp_id(params[:id])
     if third_space
-      third_space.destroy
-      render json: { message: 'Record successfully destroyed' }
+      # third_space.destroy!
+      render json: ThirdSpace.delete(third_space.id), status: 204
     else
       render json: { error: 'Record not found' }, status: :not_found
     end
