@@ -14,6 +14,7 @@
 # Configure Using Gemfile
 # gem "pg"
 #
+
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -81,6 +82,12 @@ test:
 #
 production:
   <<: *default
-  database: third_space_be_production
-  username: third_space_be
-  password: <%= ENV["THIRD_SPACE_BE_DATABASE_PASSWORD"] %>
+  # database: third_space_be_production
+  # username: third_space_be
+  # password: <%= ENV["THIRD_SPACE_BE_DATABASE_PASSWORD"] %>
+  host     : app-b157e346-81ad-4d43-8c63-095c11eb26e3-do-user-15582647-0.c.db.ondigitalocean.com
+  port     : 25060
+  username : db
+  password : AVNS_Ti_MZP6-dO0DoQUoSHk
+  database : db
+  sslmode  : require
