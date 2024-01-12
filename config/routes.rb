@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       get "/third_spaces/:id/reviews", to: "third_spaces#reviews"
       post "/third_spaces/:id/reviews", to: "third_spaces#create_review"
 
-      delete "/user_third_spaces", to: "user_third_spaces#destroy"
+      delete "/user_third_spaces/:id", to: "user_third_spaces#destroy"
 
       resources :users do
         resources :third_spaces, only: [:index], :controller=>:user_third_spaces
