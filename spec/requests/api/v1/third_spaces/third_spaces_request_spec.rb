@@ -227,13 +227,11 @@ describe "Third Places API Endpoint" do
       expect(ThirdSpace.all.count).to eq(6)
 
       third_space = ThirdSpace.find(126) 
-  
-      expect(response).to be_successful
-      expect(response.status).to eq(201)
+      third_space.update!(yelp_id: "123")
 
-      delete api_v1_third_space_path(third_space.id)
+      delete api_v1_third_space_path("123")
+      expect(response.status).to eq(204)
       expect(ThirdSpace.all.count).to eq(5)
-      expect(ThirdSpace.where(id: 126)).to be_empty
     end
   end
 
