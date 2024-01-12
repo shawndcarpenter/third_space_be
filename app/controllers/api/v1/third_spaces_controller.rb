@@ -43,7 +43,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
 
   def update
-    third_space = ThirdSpace.find(params[:id])
+    third_space = ThirdSpace.find_by(yelp_id: params[:id])
     third_space.update!(tags: ([third_space[:tags]] + params[:tags]).flatten.reject(&:blank?))
 
     render json: ThirdSpaceSerializer.new(third_space)
