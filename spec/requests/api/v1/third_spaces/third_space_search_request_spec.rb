@@ -8,6 +8,12 @@ describe "Third Places SEARCH API Endpoint" do
     @space_4 = create(:third_space)
     @space_5 = create(:third_space)
     @space_6 = create(:third_space)
+    @space_1.update!(yelp_id: "12345")
+    @space_2.update!(yelp_id: "23456")
+    @space_3.update!(yelp_id: "34567")
+    @space_4.update!(yelp_id: "45678")
+    @space_5.update!(yelp_id: "56789")
+    @space_6.update!(yelp_id: "67890")
 
     @space_1_params = ({
       tags: ["happy"]
@@ -33,12 +39,12 @@ describe "Third Places SEARCH API Endpoint" do
       tags: ["happy", "studious", "studious", "studious", "studious", "studious"]
     })
 
-    patch "/api/v1/third_spaces/#{@space_1.id}", params: @space_1_params
-    patch "/api/v1/third_spaces/#{@space_2.id}", params: @space_2_params
-    patch "/api/v1/third_spaces/#{@space_3.id}", params: @space_3_params
-    patch "/api/v1/third_spaces/#{@space_4.id}", params: @space_4_params
-    patch "/api/v1/third_spaces/#{@space_5.id}", params: @space_5_params
-    patch "/api/v1/third_spaces/#{@space_6.id}", params: @space_6_params
+    patch "/api/v1/third_spaces/#{@space_1.yelp_id}", params: @space_1_params
+    patch "/api/v1/third_spaces/#{@space_2.yelp_id}", params: @space_2_params
+    patch "/api/v1/third_spaces/#{@space_3.yelp_id}", params: @space_3_params
+    patch "/api/v1/third_spaces/#{@space_4.yelp_id}", params: @space_4_params
+    patch "/api/v1/third_spaces/#{@space_5.yelp_id}", params: @space_5_params
+    patch "/api/v1/third_spaces/#{@space_6.yelp_id}", params: @space_6_params
   end
 
   it "sends a list of third places matching criteria" do

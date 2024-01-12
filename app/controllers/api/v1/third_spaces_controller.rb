@@ -9,7 +9,26 @@ class Api::V1::ThirdSpacesController < ApplicationController
     render json: 
     ThirdSpaceSerializer.new(ThirdSpace.find_by(yelp_id: params[:id]))
   end
+
+  def reviews 
+    reviews = ReviewObject.where(yelp_id: params[:id])
+    render json: 
+    ReviewObjectSerializer.new(reviews)
+  end
   
+  def create_review
+    third_space = ThirdSpace.find_by(yelp_id: params[:id])
+    review_object = third_space.review_objects.create!(yelp_id: review_params[:yelp_id], 
+                                                        text: review_params[:text], 
+                                                        name: review_params[:name],
+                                                        rating: review_params[:rating],
+                                                        )
+    # binding.pry
+    
+    render json: 
+    ReviewObjectSerializer.new(review_object)
+  end
+
   def create
     parsed_tags = JSON.parse(space_params[:tags])
     parsed_photos = JSON.parse(space_params[:photos])
@@ -24,7 +43,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
 
   def update
-    third_space = ThirdSpace.find(params[:id])
+    third_space = ThirdSpace.find_by(yelp_id: params[:id])
     third_space.update!(tags: ([third_space[:tags]] + params[:tags]).flatten.reject(&:blank?))
 
     render json: ThirdSpaceSerializer.new(third_space)
@@ -70,6 +89,10 @@ class Api::V1::ThirdSpacesController < ApplicationController
     end
 
     render json: ThirdSpaceSerializer.new(search_results), status: 200
+  end
+
+  def review_params
+    params.permit(:text, :rating, :yelp_id, :name, :id)
   end
 
   def search_params
