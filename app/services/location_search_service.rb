@@ -1,7 +1,7 @@
 class LocationSearchService
   def conn
     Faraday.new(url: "https://api.yelp.com/v3/businesses/search") do |faraday|
-      faraday.headers["Authorization"] = Rails.application.credentials.yelp[:key]
+      faraday.headers["Authorization"] = Rails.application.credentials[:yelp_key]
     end
   end
 
