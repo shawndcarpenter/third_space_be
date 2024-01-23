@@ -11,19 +11,20 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
 
   def reviews 
-    reviews = ReviewObject.where(yelp_id: params[:id])
+    reviews = (ReviewFacade.new(params[:id]).reviews || []) + ReviewObject.where(yelp_id: params[:id])
     render json: 
     ReviewObjectSerializer.new(reviews)
   end
   
   def create_review
     third_space = ThirdSpace.find_by(yelp_id: params[:id])
-    review_object = third_space.review_objects.create!(yelp_id: review_params[:yelp_id], 
+    review_object = ReviewObject.create!(yelp_id: review_params[:yelp_id], 
                                                         text: review_params[:text], 
                                                         name: review_params[:name],
+                                                        date: review_params[:date],
                                                         rating: review_params[:rating],
+                                                        third_space_id: third_space.id
                                                         )
-    # binding.pry
     
     render json: 
     ReviewObjectSerializer.new(review_object)
@@ -92,7 +93,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
   end
 
   def review_params
-    params.permit(:text, :rating, :yelp_id, :name, :id)
+    params.permit(:text, :rating, :yelp_id, :name, :date, :id)
   end
 
   def search_params
