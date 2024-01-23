@@ -89,7 +89,6 @@ The front end repository handles most of what the user will interact with, inclu
 [Bootstrap](https://github.com/twbs/bootstrap-rubygem) was used extensively for design on the front end.
 
 ### Testing
-XXX check over all backend gems
 
 The [Shoulda Matchers Gem](https://github.com/thoughtbot/shoulda-matchers) is used for one-liner testing of models.
 
