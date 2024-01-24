@@ -34,8 +34,11 @@ class Api::V1::ThirdSpacesController < ApplicationController
     parsed_tags = JSON.parse(space_params[:tags])
     parsed_photos = JSON.parse(space_params[:photos])
     # parsed_hours = JSON.parse(space_params[:hours])
-
+    
     third_space = ThirdSpace.create!(space_params)
+    parsed_tags.map do |tag|
+      third_space.markers.create!(name: tag)
+    end
     third_space.update!(tags: parsed_tags)
     third_space.update!(photos: parsed_photos)
     # third_space.update!(hours: parsed_hours)
