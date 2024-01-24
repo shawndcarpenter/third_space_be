@@ -55,3 +55,11 @@ ThirdSpace.all.each_with_index do |space, index|
 
   space.save
 end
+
+ThirdSpace.all.each do |space|
+  if space.tags != nil
+    space.tags.map do |tag|
+      space.markers.create!(name: tag)
+    end
+  end
+end
