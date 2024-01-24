@@ -11,7 +11,6 @@ class CreateThirdSpaces < ActiveRecord::Migration[7.0]
       t.float :lon
       t.string :price
       t.jsonb :hours
-      t.boolean :open_now
       t.string :category
       t.string :tags, array: true, default: []
       t.timestamps

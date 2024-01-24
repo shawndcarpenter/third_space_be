@@ -183,10 +183,8 @@ GET "/api/v1/locations/:id"
           {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>4},
           {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>5},
           {:is_overnight=>false, :start=>"0700", :end=>"1800", :day=>6}],
-        :hours_type=>"REGULAR",
-        :is_open_now=>true}],
-     :category=>"category",
-     :open_now=>true}}}
+        :hours_type=>"REGULAR"}],
+     :category=>"category"}}}
 ```
 
 ### GET Reviews For A Location
@@ -246,7 +244,6 @@ GET "/api/v1/locations/:yelp_id"
    :price=>"$$$$",
    :hours=>nil,
    :category=>"French",
-   :open_now=>nil,
    :tags=>
     ["happy",
      "studious"] }}
@@ -278,7 +275,6 @@ A get request is received, which requests all of the third spaces we have saved.
     :price=>"$$",
     :hours=>nil,
     :category=>"New American",
-    :open_now=>nil,
     :tags=>nil}},
  {:id=>"id2",
   :type=>"third_space", ...
@@ -301,7 +297,6 @@ POST '/api/v1/third_spaces', ({ id: id,
                     lon: float,
                     price: $$,
                     hours: hours,
-                    open_now: false,
                     category: "German",
                     tags: ["happy", "studious"]})
 ```
@@ -324,7 +319,6 @@ POST '/api/v1/third_spaces', ({ id: id,
      :price=>"쁛棼",
      :hours=>"Bess Twishes",
      :category=>"Bakery",
-     :open_now=>false,
      :tags=>["happy", "studious"]}}}
 ```
 
@@ -372,7 +366,6 @@ patch "/api/v1/third_spaces/:yelp_id", params: ({
      :price=>"쁛棼",
      :hours=>"Bess Twishes",
      :category=>"Bakery",
-     :open_now=>false,
      :tags=>["happy", "studious"]}}}
 ```
 
@@ -499,7 +492,6 @@ get '/api/v1/third_spaces/search?', params: ({
     :price=>"$]ꦰ",
     :hours=>"Carlotta Tendant",
     :category=>"African",
-    :open_now=>true,
     :tags=>["studious"]}},
  {:id=>"188",
   :type=>"third_space", ...

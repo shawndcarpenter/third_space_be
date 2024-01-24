@@ -99,9 +99,6 @@ describe "Third Places SEARCH API Endpoint" do
 
     expect(space[:attributes]).to have_key(:category)
     expect(space[:attributes][:category]).to be_a(String)
-
-    expect(space[:attributes]).to have_key(:open_now)
-    expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)  
   end
 
   it "sends a list of third places when a place contains multiple tags" do
@@ -156,9 +153,6 @@ describe "Third Places SEARCH API Endpoint" do
 
       expect(space[:attributes]).to have_key(:category)
       expect(space[:attributes][:category]).to be_a(String)
-
-      expect(space[:attributes]).to have_key(:open_now)
-      expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
     end
   end
 
@@ -227,8 +221,5 @@ describe "Third Places SEARCH API Endpoint" do
 
     expect(space[:attributes]).to have_key(:category)
     expect(space[:attributes][:category]).to be_a(String)
-
-    expect(space[:attributes]).to have_key(:open_now)
-    expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)  
   end
 end

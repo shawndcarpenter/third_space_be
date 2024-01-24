@@ -18,7 +18,6 @@ FactoryBot.define do
     price { Faker::String.random(length: 1..4) }
     hours { Faker::FunnyName.two_word_name }
     category { Faker::Restaurant.type }
-    open_now { Faker::Boolean.boolean }
 
     factory :third_space_with_review_objects do
       transient do

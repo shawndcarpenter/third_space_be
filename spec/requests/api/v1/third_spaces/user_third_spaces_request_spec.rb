@@ -60,9 +60,6 @@ describe "Get Third Places API Endpoint" do
 
       expect(space[:attributes]).to have_key(:category)
       expect(space[:attributes][:category]).to be_a(String)
-
-      expect(space[:attributes]).to have_key(:open_now)
-      expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
     end
   end
 
@@ -96,7 +93,6 @@ describe "Get Third Places API Endpoint" do
     expect(user_space[:attributes][:price]).to eq(space.price)
     expect(user_space[:attributes][:hours]).to eq(space.hours)
     expect(user_space[:attributes][:category]).to eq(space.category)
-    expect(user_space[:attributes][:open_now]).to eq(space.open_now)
   end
 
   it "will not create a user third_space if it already exists" do
