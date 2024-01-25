@@ -19,17 +19,17 @@ class Api::V1::ThirdSpacesController < ApplicationController
   def create_review
     third_space = ThirdSpace.find_by(yelp_id: params[:id])
     review_object = ReviewObject.create!(yelp_id: review_params[:yelp_id], 
-                                                        text: review_params[:text], 
-                                                        name: review_params[:name],
-                                                        date: review_params[:date],
-                                                        rating: review_params[:rating],
-                                                        third_space_id: third_space.id
-                                                        )
+    text: review_params[:text], 
+    name: review_params[:name],
+    date: review_params[:date],
+    rating: review_params[:rating],
+    third_space_id: third_space.id
+    )
     
     render json: 
     ReviewObjectSerializer.new(review_object)
   end
-
+  
   def create
     parsed_tags = JSON.parse(space_params[:tags])
     parsed_photos = JSON.parse(space_params[:photos])
@@ -45,33 +45,44 @@ class Api::V1::ThirdSpacesController < ApplicationController
     
     render json: ThirdSpaceSerializer.new(third_space), status: 201
   end
-
+  
   def update
     third_space = ThirdSpace.find_by(yelp_id: params[:id])
     third_space.update!(tags: ([third_space[:tags]] + params[:tags]).flatten.reject(&:blank?))
+    params[:tags].map do |tag|
+      third_space.markers.create!(name: tag)
+    end
 
     render json: ThirdSpaceSerializer.new(third_space)
   end
-
+  
   def destroy
     third_space = ThirdSpace.find_by_yelp_id(params[:id])
     if third_space
       # third_space.destroy!
+      third_space.markers.delete_all
       render json: ThirdSpace.delete(third_space.id), status: 204
     else
       render json: { error: 'Record not found' }, status: :not_found
     end
   end
-
+  
   def search
     find_matching_third_spaces(params)
   end
-
+  
   def search_by_name
     third_spaces = ThirdSpace.where("name ilike ?", "%#{params[:name]}%")
     render json: ThirdSpaceSerializer.new(third_spaces)
   end
 
+  def search_by_tags
+    tags = params[:tags]
+    spaces = ThirdSpace.all.joins(:markers).where(markers: { name: tags })
+
+    render json: ThirdSpaceSerializer.new(spaces)
+  end
+  
   private
   def find_matching_third_spaces(params)
     search_results = []
