@@ -1,5 +1,5 @@
 class Review
-  attr_reader :id, :name, :text, :rating, :yelp_id
+  attr_reader :id, :name, :text, :rating, :date, :yelp_id
 
   def initialize(data, yelp_id)
     @yelp_id = yelp_id
@@ -7,6 +7,7 @@ class Review
     @name = data[:user][:name]
     @text = data[:text]
     @rating = data[:rating]
+    @date = data[:time_created].split(' ').first
   end
 
   def make_review_object
@@ -15,6 +16,7 @@ class Review
         name: @name, 
         text: @text, 
         rating: @rating, 
+        date: @date,
         id: @id 
         })
   end

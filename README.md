@@ -53,13 +53,12 @@ There are plenty of people who, for a variety of reasons, may wish to find a loc
 4. Whether the space is sober
 
 ## Moods Accounted For
-1. Calm
+1. Chill
 2. Studious
-3. High Energy
-4. Loud
-5. Quiet
-6. Relaxed
-7. Friendly
+3. Happy
+4. Sad
+5. Social
+6. Party
 
 To provide feedback (including ideas for other moods to be added to our list), contact one of our members in the Staff list below or create a pull request using the instructions outlined in Contributing.
 
@@ -90,7 +89,6 @@ The front end repository handles most of what the user will interact with, inclu
 [Bootstrap](https://github.com/twbs/bootstrap-rubygem) was used extensively for design on the front end.
 
 ### Testing
-XXX check over all backend gems
 
 The [Shoulda Matchers Gem](https://github.com/thoughtbot/shoulda-matchers) is used for one-liner testing of models.
 
@@ -335,7 +333,7 @@ A third space can be deleted by an admin. To do so, a delete request is sent to 
 *Third Spaces will receive the following input:*
 
 ```sh
-delete "/api/v1/third_spaces/:id"
+delete "/api/v1/third_spaces/:yelp_id"
 ```
 
 *And return the following output to the front end application:*
@@ -350,7 +348,7 @@ A user can update any of the tags. A request is received with parameters of the 
 *Third Spaces will receive the following input:*
 
 ```sh
-patch "/api/v1/third_spaces/:id", params: ({
+patch "/api/v1/third_spaces/:yelp_id", params: ({
         tags: ["happy", "studious"]
       })
 ```
@@ -446,7 +444,7 @@ When a user removes a Third Space from their saved list, a delete request is sen
 ```sh
 delete "/api/v1/user_third_spaces", params: {
           user_id: user.id,
-          third_space_id: third_space.id
+          third_space_id: third_space.yelp_id
           }
 ```
 

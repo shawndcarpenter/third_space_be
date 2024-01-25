@@ -227,17 +227,15 @@ describe "Third Places API Endpoint" do
       expect(ThirdSpace.all.count).to eq(6)
 
       third_space = ThirdSpace.find(126) 
-  
-      expect(response).to be_successful
-      expect(response.status).to eq(201)
+      third_space.update!(yelp_id: "123")
 
-      delete api_v1_third_space_path(third_space.id)
+      delete api_v1_third_space_path("123")
+      expect(response.status).to eq(204)
       expect(ThirdSpace.all.count).to eq(5)
-      expect(ThirdSpace.where(id: 126)).to be_empty
     end
   end
 
-  it "can send reviews for a third_space" do
+  it "can send reviews for a third_space", :vcr do
     create(:third_space_with_review_objects)
     space = ThirdSpace.last
 
@@ -266,7 +264,7 @@ describe "Third Places API Endpoint" do
     end
   end
 
-  it "will send empty array if no reviews available" do
+  it "will send empty array if no reviews available", :vcr do
     create_list(:third_space, 5)
     space = ThirdSpace.last
 
