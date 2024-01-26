@@ -34,24 +34,32 @@ end
 
 ThirdSpace.all.each_with_index do |space, index|
   if index % 10 == 0
-    space.tags = ["happy", "studious", "happy", "studious", "happy", "studious", "happy", "studious", "happy", "studious", "happy", "studious", "customer_restrooms", "parking", "parking", "parking", "sober", "no_purchase_necessary", "child_friendly", "child_friendly", "bright", "transportation_close", "bipoc_friendly", "queer_friendly", "respectful", "gender_neutral_restrooms", ]
+    space.tags = ["Chill", "Loud", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Customer Restrooms", "Parking", "Parking", "Parking", "Sober", "No Purchase Necessary", "Child Friendly", "Child Friendly", "Bright", "Transportation Close", "BIPOC Friendly", "Queer Friendly", "Respectful", "Gender Neutral Restrooms"]
   elsif index % 9 == 0
-    space.tags = ["happy", "studious", "happy", "studious", "accessible", "accessible", "accessible", "accessible", "customer_restrooms", "customer_restrooms", "parking", "sober", "purchase_necessary", "purchase_necessary", "purchase_necessary", "child_friendly", "child_friendly",  "bright", "no_transportation_close", "bipoc_friendly", "queer_friendly", "respectful", "gender_neutral_restrooms", ]
+    space.tags = ["Quiet", "Happy", "Studious", "Happy", "Studious", "Accessible Entrance", "Accessible Entrance", "Accessible Entrance", "Accessible Entrance", "Customer Restrooms", "Customer Restrooms", "Parking", "Sober", "Purchase Necessary", "Purchase Necessary", "Purchase Necessary", "Child Friendly", "Child Friendly",  "Bright", "No Transportation Close", "BIPOC Friendly", "Queer Friendly", "Respectful", "Gender Neutral Restrooms"]
   elsif index % 8 == 0
-    space.tags = ["studious", "party", "party", "party", "not_accessible", "accessible", "customer_restrooms", "parking", "sober", "no_purchase_necessary", "no_purchase_necessary", "no_purchase_necessary", "bright","transportation_close", "bipoc_friendly", "respectful", "gender_neutral_restrooms", ]
+    space.tags = ["Chill", "Average Noise", "Studious", "Party", "Party", "Party", "Not Accessible", "Accessible Entrance", "Customer Restrooms", "Parking", "Sober", "No Purchase Necessary", "No Purchase Necessary", "No Purchase Necessary", "Bright","Transportation Close", "BIPOC Friendly", "Respectful", "Gender Neutral Restrooms"]
   elsif index % 7 == 0
-    space.tags = ["party", "party", "party", "party", "party", "party", "accessible", "accessible", "accessible", "no_customer_restrooms", "no_parking",  "no_parking", "sober", "purchase_necessary", "purchase_necessary", "no_purchase_necessary", "moody", "no_transportation_close", "queer_friendly", "responsive", "gender_neutral_restrooms", ]
+    space.tags = ["Social", "Quiet", "Party", "Party", "Party", "Party", "Party", "Party", "Accessible Entrance", "Accessible Entrance", "Accessible Entrance", "No Customer Restrooms", "No Parking",  "No Parking", "Sober", "Purchase Necessary", "Purchase Necessary", "No Purchase Necessary", "Moody", "No Transportation Close", "Queer Friendly", "Responsive", "Gender Neutral Restrooms"]
   elsif index % 6 == 0
-    space.tags = ["party", "party", "party", "not_accessible", "customer_restrooms",  "no_customer_restrooms", "parking", "no_parking",  "no_parking", "purchase_necessary", "purchase_necessary", "purchase_necessary", "not_child_friendly", "moody", "transportation_close", "bipoc_friendly", "responsive", "no_gender_neutral_restrooms", ]
+    space.tags = ["Average Noise", "Party", "Party", "Party", "Not Accessible", "Customer Restrooms",  "No Customer Restrooms", "Parking", "No Parking",  "No Parking", "Purchase Necessary", "Purchase Necessary", "Purchase Necessary", "Not Child Friendly", "Moody", "Transportation Close", "BIPOC Friendly", "Responsive", "No Gender Neutral Restrooms"]
   elsif index % 5 == 0
-    space.tags = ["party", "sad", "sad", "sad", "sad", "accessible", "accessible", "accessible", "no_customer_restrooms", "no_parking",  "no_parking", "sober", "sober", "sober","purchase_necessary", "purchase_necessary", "purchase_necessary", "child_friendly", "child_friendly",  "moody", "no_transportation_close", "bipoc_friendly", "pushy", "no_gender_neutral_restrooms", ]
+    space.tags = ["Chill", "Loud", "Party", "Sad", "Sad", "Sad", "Sad", "Accessible Entrance", "Accessible Entrance", "Accessible Entrance", "No Customer Restrooms", "No Parking",  "No Parking", "Sober", "Sober", "Sober","Purchase Necessary", "Purchase Necessary", "Purchase Necessary", "Child Friendly", "Child Friendly",  "Moody", "No Transportation Close", "BIPOC Friendly", "Pushy", "No Gender Neutral Restrooms"]
   elsif index % 4 == 0
-    space.tags = ["party", "party", "party", "not_accessible", "accessible", "accessible", "customer_restrooms", "no_customer_restrooms",  "non_sober", "purchase_necessary", "purchase_necessary", "no_purchase_necessary", "not_child_friendly", "average_lighting", "transportation_close", "transportation_close", "bipoc_friendly", "queer_friendly", "responsive", "no_gender_neutral_restrooms", ]
+    space.tags = ["Social", "Average Noise", "Party", "Party", "Party", "Not Accessible", "Accessible Entrance", "Accessible Entrance", "Customer Restrooms", "No Customer Restrooms",  "Non-Sober", "Purchase Necessary", "Purchase Necessary", "No Purchase Necessary", "Not Child Friendly", "Average Lighting", "Transportation Close", "Transportation Close", "BIPOC Friendly", "Queer Friendly", "Responsive", "No Gender Neutral Restrooms"]
   elsif index % 3 == 0
-    space.tags = ["studious", "studious", "studious", "sad", "sad", "sad", "accessible",  "accessible", "no_customer_restrooms", "parking", "no_parking", "sober", "non_sober", "no_purchase_necessary", "child_friendly", "child_friendly", "average_lighting", "no_transportation_close", "non_bipoc_friendly", "pushy", "responsive", "responsive", "no_gender_neutral_restrooms", ]
+    space.tags = ["Average Noise", "Studious", "Studious", "Studious", "Sad", "Sad", "Sad", "Accessible Entrance",  "Accessible Entrance", "No Customer Restrooms", "Parking", "No Parking", "Sober", "Non-Sober", "No Purchase Necessary", "Child Friendly", "Child Friendly", "Average Lighting", "No Transportation Close", "Not BIPOC Friendly", "Pushy", "Responsive", "Responsive", "No Gender Neutral Restrooms"]
   elsif index % 2 == 0
-    space.tags = ["studious", "studious", "sad", "sad", "not_accessible", "accessible", "not_accessible", "customer_restrooms", "no_customer_restrooms", "no_customer_restrooms", "no_parking", "sober", "purchase_necessary", "not_child_friendly", "average_lighting", "transportation_close", "no_transportation_close", "bipoc_friendly", "bipoc_friendly", "queer_friendly", "pushy", "no_gender_neutral_restrooms", ]
+    space.tags = ["Social", "Quiet", "Studious", "Studious", "Sad", "Sad", "Not Accessible", "Accessible Entrance", "Not Accessible", "Customer Restrooms", "No Customer Restrooms", "No Customer Restrooms", "No Parking", "Sober", "Purchase Necessary", "Not Child Friendly", "Average Lighting", "Transportation Close", "No Transportation Close", "BIPOC Friendly", "BIPOC Friendly", "Queer Friendly", "Pushy", "No Gender Neutral Restrooms"]
   end
 
   space.save
+end
+
+ThirdSpace.all.each do |space|
+  if space.tags != nil
+    space.tags.map do |tag|
+      space.markers.create!(name: tag)
+    end
+  end
 end

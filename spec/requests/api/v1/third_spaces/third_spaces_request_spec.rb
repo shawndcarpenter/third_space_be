@@ -226,7 +226,7 @@ describe "Third Places API Endpoint" do
     end
   end
 
-  it "can send reviews for a third_space" do
+  it "can send reviews for a third_space", :vcr do
     create(:third_space_with_review_objects)
     space = ThirdSpace.last
 
@@ -255,7 +255,7 @@ describe "Third Places API Endpoint" do
     end
   end
 
-  it "will send empty array if no reviews available" do
+  it "will send empty array if no reviews available", :vcr do
     create_list(:third_space, 5)
     space = ThirdSpace.last
 

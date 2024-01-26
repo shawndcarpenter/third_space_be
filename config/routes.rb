@@ -34,6 +34,7 @@ Rails.application.routes.draw do
           delete :destroy_third_space
           get :search
           get :search_by_name
+          get :search_by_tags
         end 
       end
 
