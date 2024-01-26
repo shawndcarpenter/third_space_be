@@ -78,7 +78,7 @@ class Api::V1::ThirdSpacesController < ApplicationController
 
   def search_by_tags
     tags = params[:tags]
-    spaces = ThirdSpace.all.joins(:markers).where(markers: { name: tags })
+    spaces = ThirdSpace.all.joins(:markers).where(markers: { name: tags }).distinct
 
     render json: ThirdSpaceSerializer.new(spaces)
   end
