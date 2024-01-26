@@ -86,8 +86,7 @@
                   "day": 6
               }
           ],
-          "hours_type": "REGULAR",
-          "is_open_now": false
+          "hours_type": "REGULAR"
       }
   ],
   "transactions": [

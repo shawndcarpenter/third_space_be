@@ -54,9 +54,6 @@ describe "Third Places API Endpoint" do
 
       expect(space[:attributes]).to have_key(:category)
       expect(space[:attributes][:category]).to be_a(String)
-
-      expect(space[:attributes]).to have_key(:open_now)
-      expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
     end
   end
 
@@ -113,9 +110,6 @@ describe "Third Places API Endpoint" do
 
     expect(space[:attributes]).to have_key(:category)
     expect(space[:attributes][:category]).to be_a(String)
-
-    expect(space[:attributes]).to have_key(:open_now)
-    expect(space[:attributes][:open_now]).to be_a(TrueClass).or be_a(FalseClass)
   end
 
   it "can create a new third space" do
@@ -134,7 +128,6 @@ describe "Third Places API Endpoint" do
                     lon: 79.34,
                     price: "FT\u{63F19}",
                     hours: json_hours,
-                    open_now: false,
                     category: "German",
                     tags: json_tags})
      
@@ -156,7 +149,6 @@ describe "Third Places API Endpoint" do
     expect(space.lon).to eq(space_params[:lon])
     expect(space.price).to eq(space_params[:price])
     expect(space.hours).to eq("\"Olive Hoyl\"")
-    expect(space.open_now).to eq(space_params[:open_now])
     expect(space.category).to eq(space_params[:category])
     expect(space.tags).to eq(['happy', 'studious'])
     expect(space.photos).to eq("[]")
@@ -219,7 +211,6 @@ describe "Third Places API Endpoint" do
                       lon: 79.34,
                       price: "FT\u{63F19}",
                       hours: json_hours,
-                      open_now: false,
                       category: "German",
                       tags: json_tags})
   

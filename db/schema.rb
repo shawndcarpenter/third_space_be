@@ -52,7 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_24_192301) do
     t.float "lon"
     t.string "price"
     t.jsonb "hours"
-    t.boolean "open_now"
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

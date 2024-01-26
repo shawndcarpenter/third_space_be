@@ -125,7 +125,6 @@ class Api::V1::ThirdSpacesController < ApplicationController
     :hours, 
     :category, 
     :tags, 
-    :open_now,
     :third_space)
   end
 
@@ -144,7 +143,6 @@ class Api::V1::ThirdSpacesController < ApplicationController
                 :hours, 
                 :category, 
                 :tags, 
-                :open_now,
                 :third_space => {}
                 )
   end
