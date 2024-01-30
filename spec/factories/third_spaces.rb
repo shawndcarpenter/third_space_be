@@ -11,6 +11,5 @@
 #     price { Faker::String.random(length: 1..4) }
 #     hours { Faker::FunnyName.two_word_name }
 #     category { Faker::Restaurant.type }
-#     open_now { Faker::Boolean.boolean }
 #   end
 # end

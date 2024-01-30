@@ -6,7 +6,6 @@ class DetailedLocationFacade
   def location
     service = DetailedLocationService.new
     json = service.find_location(@yelp_id)
-    # binding.pry
     unless json[:error]
       DetailedLocation.new(json)
     end
