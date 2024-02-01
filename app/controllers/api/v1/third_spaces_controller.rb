@@ -78,7 +78,12 @@ class Api::V1::ThirdSpacesController < ApplicationController
 
   def search_by_tags
     tags = params[:tags]
-    spaces = ThirdSpace.all.joins(:markers).where(markers: { name: tags }).distinct
+    city = params[:city]
+    state = params[:state]
+    spaces = ThirdSpace.all.joins(:markers).where(markers: { name: tags })
+                                           .distinct
+                                           .where("address ilike ?", "%#{city}%")
+                                           .where("address ilike ?", "%#{state}%")
 
     render json: ThirdSpaceSerializer.new(spaces)
   end
