@@ -1,7 +1,7 @@
 class ReviewService
   def conn
     Faraday.new(url: "https://api.yelp.com/v3/businesses/") do |faraday|
-      faraday.headers["Authorization"] = Rails.application.credentials[:yelp_key]
+      faraday.headers["Authorization"] = Rails.application.credentials.yelp[:key]
     end
   end
  
