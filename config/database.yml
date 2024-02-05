@@ -80,14 +80,17 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-  # database: third_space_be_production
-  # username: third_space_be
-  # password: <%= ENV["THIRD_SPACE_BE_DATABASE_PASSWORD"] %>
-  host     : app-b157e346-81ad-4d43-8c63-095c11eb26e3-do-user-15582647-0.c.db.ondigitalocean.com
-  port     : 25060
-  username : db
-  password : AVNS_Ti_MZP6-dO0DoQUoSHk
-  database : db
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: defaultdb
+  username: doadmin
+  password: <%= Rails.application.credentials.dig(:production, :database, :password) %>
+  host: third-space-be-production-do-user-15582647-0.c.db.ondigitalocean.com
+  port: 25060
+  sslmode: require
 
 
-
+  
