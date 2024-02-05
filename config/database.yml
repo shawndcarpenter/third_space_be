@@ -81,16 +81,16 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
   database: defaultdb
   username: doadmin
-  password: <%= Rails.application.credentials.dig(:production, :database, :password) %>
+  password: AVNS_SWkv4GHaQ7qR4aO121n
   host: third-space-be-production-do-user-15582647-0.c.db.ondigitalocean.com
   port: 25060
   sslmode: require
+
 
 
   
