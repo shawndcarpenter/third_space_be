@@ -63,3 +63,5 @@ ThirdSpace.all.each do |space|
     end
   end
 end
+
+user = User.create
