@@ -29,3 +29,4 @@
 /config/master.key
 /config/credentials.yml.enc
 /coverage
+/config/application.yml

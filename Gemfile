@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.2"
 
 gem "faraday"
+gem "figaro"
 gem "jsonapi-serializer"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
