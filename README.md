@@ -114,7 +114,7 @@ This application makes an API call to the Yelp API for the results of the search
 
 ```sh
 get https://api.yelp.com/v3/businesses/search?location=:city&term=:name
-headers["Authorization"] = Rails.application.credentials.yelp[:key]
+headers["Authorization"] = ENV['YELP_API_KEY'] # Rails.application.credentials.yelp[:key]
 ```
 
 Then, a response is given which includes the top 50 locations matching the search criteria.
@@ -146,7 +146,7 @@ This application makes an API call to the Yelp API for the reviews of that locat
 
 ```sh
 get https://api.yelp.com/v3/businesses/:yelp_id
-headers["Authorization"] = Rails.application.credentials.yelp[:key]
+headers["Authorization"] = ENV['YELP_API_KEY'] # Rails.application.credentials.yelp[:key]
 ```
 
 Then, a response is given which includes that location.
@@ -191,7 +191,7 @@ A request is received for the reviews for the location matching the :id. This ap
 
 ```sh
 get https://api.yelp.com/v3/businesses/:yelp_id/reviews?limit=5
-headers["Authorization"] = Rails.application.credentials.yelp[:key]
+headers["Authorization"] = ENV['YELP_API_KEY'] # Rails.application.credentials.yelp[:key]
 ```
 
 Then, a response is given which includes the top 5 reviews for that location.

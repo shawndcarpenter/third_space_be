@@ -1,7 +1,7 @@
 class ThirdSpaceService
   def conn
     conn = Faraday.new(url: "https://api.yelp.com/v3/businesses/") do |faraday|
-      faraday.headers["Authorization"] = Rails.application.credentials.yelp[:key]
+      faraday.headers["Authorization"] = ENV['YELP_API_KEY'] # Rails.application.credentials.yelp[:key]
     end
   end
 
