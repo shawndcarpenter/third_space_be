@@ -2,7 +2,8 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-#
+require "factory_bot_rails"
+include FactoryBot::Syntax::Methods
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 boulder_locations = File.read('spec/fixtures/boulder_locations_top_50_results_search.json')
@@ -10,6 +11,17 @@ boulder_json = JSON.parse(boulder_locations, symbolize_names: true)
 boulder_businesses = boulder_json[:businesses]
 
 boulder_businesses.map do |business|
+  poro = ThirdSpacePoro.new(business)
+  third_space = poro.make_third_space
+  reviews = FactoryBot.build_list(:review_object, 10, third_space: third_space, yelp_id: third_space.yelp_id)
+  reviews.each { |review| review.save }
+end
+
+austin_locations = File.read('spec/fixtures/austin_locations_top_50_results_search.json')
+austin_json = JSON.parse(austin_locations, symbolize_names: true)
+austin_businesses = austin_json[:businesses]
+
+austin_businesses.map do |business|
   poro = ThirdSpacePoro.new(business)
   poro.make_third_space
 end
@@ -53,6 +65,8 @@ ThirdSpace.all.each_with_index do |space, index|
     space.tags = ["Social", "Quiet", "Studious", "Studious", "Sad", "Sad", "Not Accessible", "Accessible Entrance", "Not Accessible", "Customer Restrooms", "No Customer Restrooms", "No Customer Restrooms", "No Parking", "Sober", "Purchase Necessary", "Not Child Friendly", "Average Lighting", "Transportation Close", "No Transportation Close", "BIPOC Friendly", "BIPOC Friendly", "Queer Friendly", "Pushy", "No Gender Neutral Restrooms"]
   end
 
+  reviews = FactoryBot.build_list(:review_object, 5, third_space: space, yelp_id: space.yelp_id)
+  reviews.each { |review| review.save }
   space.save
 end
 

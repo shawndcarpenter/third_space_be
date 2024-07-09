@@ -1,9 +1,12 @@
+require "faker"
+
 FactoryBot.define do
   factory :review_object do
     yelp_id { Faker::FunnyName.two_word_name }
-    name { Faker::Company.name }
-    rating { Faker::Number.decimal(l_digits: 2) }
-    text { Faker::FunnyName.two_word_name }
+    name { Faker::Name.name }
+    rating { rand(1..5) }
+    text { Faker::Restaurant.review }
+    date { Faker::Date.between(from: 1000.days.ago, to: Date.today) }
   end
 
   factory :third_space do
