@@ -10,8 +10,13 @@ class Api::V1::ThirdSpacesController < ApplicationController
     ThirdSpaceSerializer.new(ThirdSpace.find_by(yelp_id: params[:id]))
   end
 
-  def reviews 
-    reviews = (ReviewFacade.new(params[:id]).reviews || []) + ReviewObject.where(yelp_id: params[:id])
+  def reviews
+    if ThirdSpace.find_by(yelp_id: params[:id])
+      space = ThirdSpace.find_by(yelp_id: params[:id])
+      reviews = space.review_objects
+    else
+      reviews = ReviewFacade.new(params[:id]).reviews || []
+    end
     render json: 
     ReviewObjectSerializer.new(reviews)
   end
