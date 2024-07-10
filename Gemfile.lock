@@ -245,6 +245,7 @@ DEPENDENCIES
   pry
   puma (~> 5.0)
   rails (~> 7.0.8)
+  rake (~> 13.1.0)
   rspec-rails
   shoulda-matchers (~> 6.0)
   simplecov

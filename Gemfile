@@ -6,6 +6,7 @@ ruby "3.2.2"
 gem "faraday"
 gem "figaro"
 gem "jsonapi-serializer"
+gem 'rake', '~> 13.1.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
