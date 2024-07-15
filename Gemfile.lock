@@ -177,7 +177,6 @@ GEM
       actionpack (= 7.0.8)
       activesupport (= 7.0.8)
       method_source
-      rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.1.0)
