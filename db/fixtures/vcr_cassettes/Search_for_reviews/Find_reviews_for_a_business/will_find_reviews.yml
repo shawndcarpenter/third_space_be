@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/5pWHnKN3_AIrXiyyqZ74pw/reviews?limit=5
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - "<yelp>"
+      User-Agent:
+      - Faraday v2.8.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Ratelimit-Remaining:
+      - '500.0'
+      Ratelimit-Resettime:
+      - '2024-01-10T00:00:00+00:00'
+      X-B3-Sampled:
+      - '0'
+      X-Zipkin-Id:
+      - 465c82b307019660
+      Server:
+      - envoy
+      X-Routing-Service:
+      - routing-main--useast1-74f644dc4b-lhtsl; site=public_api_v3
+      Ratelimit-Dailylimit:
+      - '500.0'
+      X-Mode:
+      - ro
+      X-Proxied:
+      - 10-65-180-179-useast1bprod
+      X-Extlb:
+      - 10-65-180-179-useast1bprod
+      Cache-Control:
+      - max-age=0, no-store, private, no-transform
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 09 Jan 2024 00:33:58 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-den8280-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      Alt-Svc:
+      - h3=":443";ma=86400,h3-29=":443";ma=86400,h3-27=":443";ma=86400
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"reviews": [{"id": "dFazV3qGCV_L6DtjTxT0Ew", "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-5?adjust_creative=uTgADcfJkr4ZQKhCNIGOCQ&hrid=dFazV3qGCV_L6DtjTxT0Ew&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=uTgADcfJkr4ZQKhCNIGOCQ",
+        "text": "Some of the best coffee and tea around. They usually have some great
+        breakfast snacks to offer, but with COVID-19 see to be more limited. They
+        are now...", "rating": 5, "time_created": "2023-11-18 20:11:35", "user": {"id":
+        "8VUNf7BPC7djFBYty9oIxg", "profile_url": "https://www.yelp.com/user_details?userid=8VUNf7BPC7djFBYty9oIxg",
+        "image_url": "https://s3-media2.fl.yelpcdn.com/photo/emK-N_yUI6bUYOrBnVptnw/o.jpg",
+        "name": "Jeremy S."}}, {"id": "9zwOcnCfNuCtCLQEjaoGBw", "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-5?adjust_creative=uTgADcfJkr4ZQKhCNIGOCQ&hrid=9zwOcnCfNuCtCLQEjaoGBw&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=uTgADcfJkr4ZQKhCNIGOCQ",
+        "text": "My personal favorite coffee shop in Minnesota. Staff is extremely
+        knowledgeable and cleanliness is always at the forefront of their standards!
+        \n\nI''m a big...", "rating": 5, "time_created": "2023-01-14 12:15:02", "user":
+        {"id": "PQybT929uWifZarRxmw2jQ", "profile_url": "https://www.yelp.com/user_details?userid=PQybT929uWifZarRxmw2jQ",
+        "image_url": "https://s3-media2.fl.yelpcdn.com/photo/z-z6ICMujkq_JaQvdKNH8A/o.jpg",
+        "name": "Chris E."}}, {"id": "WWKeBFyhdHmysDcz1XVw2Q", "url": "https://www.yelp.com/biz/five-watt-coffee-minneapolis-5?adjust_creative=uTgADcfJkr4ZQKhCNIGOCQ&hrid=WWKeBFyhdHmysDcz1XVw2Q&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=uTgADcfJkr4ZQKhCNIGOCQ",
+        "text": "Five Watt has become one of my favorite coffee shops in the cities!
+        (If not my most favorite!) I don''t typically stay and work or hangout, but
+        I enjoy their...", "rating": 5, "time_created": "2023-03-18 08:06:06", "user":
+        {"id": "rhH0dMAPiMZoS4XHMpU7AA", "profile_url": "https://www.yelp.com/user_details?userid=rhH0dMAPiMZoS4XHMpU7AA",
+        "image_url": "https://s3-media1.fl.yelpcdn.com/photo/lfYkDXs1tclhGYOxBgz9fA/o.jpg",
+        "name": "Tara J."}}], "total": 334, "possible_languages": ["en"]}'
+  recorded_at: Tue, 09 Jan 2024 00:33:58 GMT
+recorded_with: VCR 6.2.0

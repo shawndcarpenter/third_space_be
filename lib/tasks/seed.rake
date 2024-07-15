@@ -1,53 +1,63 @@
 namespace :dev do
   desc "Fill the database with sample data for development"
   task seed: :environment do
+    puts "Starting dev:seed task"
     Rake::Task['db:seed'].invoke
+
     require "factory_bot_rails"
+    include FactoryBot::Syntax::Methods
+
+    puts "Clearing existing data"
     Marker.destroy_all
     ReviewObject.destroy_all
     UserThirdSpace.destroy_all
     ThirdSpace.destroy_all
     User.destroy_all
-    include FactoryBot::Syntax::Methods
 
-    boulder_locations = File.read('spec/fixtures/boulder_locations_top_50_results_search.json')
+
+    puts "Loading Boulder locations"
+    boulder_locations = File.read('db/fixtures/boulder_locations_top_50_results_search.json')
     boulder_json = JSON.parse(boulder_locations, symbolize_names: true)
     boulder_businesses = boulder_json[:businesses]
     
-    boulder_businesses.map do |business|
+    boulder_businesses.each do |business|
       poro = ThirdSpacePoro.new(business)
       third_space = poro.make_third_space
       reviews = FactoryBot.build_list(:review_object, 10, third_space: third_space, yelp_id: third_space.yelp_id)
-      reviews.each { |review| review.save }
+      reviews.each(&:save)
     end
     
-    austin_locations = File.read('spec/fixtures/austin_locations_top_50_results_search.json')
+    puts "Loading Austin locations"
+    austin_locations = File.read('db/fixtures/austin_locations_top_50_results_search.json')
     austin_json = JSON.parse(austin_locations, symbolize_names: true)
     austin_businesses = austin_json[:businesses]
     
-    austin_businesses.map do |business|
+    austin_businesses.each do |business|
       poro = ThirdSpacePoro.new(business)
       poro.make_third_space
     end
     
-    denver_locations = File.read('spec/fixtures/denver_locations_top_50_results_search.json')
+    puts "Loading Denver locations"
+    denver_locations = File.read('db/fixtures/denver_locations_top_50_results_search.json')
     denver_json = JSON.parse(denver_locations, symbolize_names: true)
     denver_businesses = denver_json[:businesses]
     
-    denver_businesses.map do |business|
+    denver_businesses.each do |business|
       poro = ThirdSpacePoro.new(business)
       poro.make_third_space
     end
     
-    minn_locations = File.read('spec/fixtures/minn_locations_top_50_results_search.json')
+    puts "Loading Minneapolis locations"
+    minn_locations = File.read('db/fixtures/minn_locations_top_50_results_search.json')
     minn_json = JSON.parse(minn_locations, symbolize_names: true)
     minn_businesses = minn_json[:businesses]
     
-    minn_businesses.map do |business|
+    minn_businesses.each do |business|
       poro = ThirdSpacePoro.new(business)
       poro.make_third_space
     end
     
+    puts "Assigning tags to ThirdSpaces"
     ThirdSpace.all.each_with_index do |space, index|
       if index % 10 == 0
         space.tags = ["Chill", "Loud", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Happy", "Studious", "Customer Restrooms", "Parking", "Parking", "Parking", "Sober", "No Purchase Necessary", "Child Friendly", "Child Friendly", "Bright", "Transportation Close", "BIPOC Friendly", "Queer Friendly", "Respectful", "Gender Neutral Restrooms"]
@@ -73,7 +83,8 @@ namespace :dev do
       reviews.each { |review| review.save }
       space.save
     end
-    
+
+    puts "Creating markers for ThirdSpaces"
     ThirdSpace.all.each do |space|
       if space.tags != nil
         space.tags.map do |tag|
@@ -82,8 +93,9 @@ namespace :dev do
       end
     end
     
+    puts "Creating a user"
     user = User.create
+    
+    puts "Third spaces loaded"
   end
-
-  "third spaces loaded"
 end

@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/12345
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - "<yelp>"
+      User-Agent:
+      - Faraday v2.8.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '102'
+      Content-Type:
+      - application/json
+      X-Zipkin-Id:
+      - e27ec52cb500cde8
+      X-B3-Sampled:
+      - '0'
+      Server:
+      - envoy
+      X-Routing-Service:
+      - routing-main--useast1-74f644dc4b-xr6j5; site=public_api_v3
+      X-Mode:
+      - ro
+      X-Proxied:
+      - 10-65-180-179-useast1bprod
+      X-Extlb:
+      - 10-65-180-179-useast1bprod
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Mon, 08 Jan 2024 17:26:39 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-den8275-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Alt-Svc:
+      - h3=":443";ma=86400,h3-29=":443";ma=86400,h3-27=":443";ma=86400
+    body:
+      encoding: UTF-8
+      string: '{"error": {"code": "BUSINESS_NOT_FOUND", "description": "The requested
+        business could not be found."}}'
+  recorded_at: Mon, 08 Jan 2024 17:26:39 GMT
+recorded_with: VCR 6.2.0
