@@ -1,6 +1,7 @@
 namespace :dev do
   desc "Fill the database with sample data for development"
   task seed: :environment do
+    Rake::Task['db:seed'].invoke
     require "factory_bot_rails"
     Marker.destroy_all
     ReviewObject.destroy_all
